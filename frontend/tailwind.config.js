@@ -6,8 +6,8 @@ export default {
       colors: {
         appBg: '#161515',
         textColor: '#ffffff',
-        headerBg: '#404b62',
-        buttonBg : "#ed5761"
+        headerBg: '#212121',
+        buttonBg : "#eb363e"
       },
       fontFamily: {
         openSans: ['Open Sans', 'sans-serif'],
