@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 function App() {
   return (
-    <div className="bg-appBg w-full h-screen text-textColor font-openSans">
+    <div className="bg-appBg w-full h-full min-h-screen text-textColor font-openSans">
              <Header />
       <div className="container mx-auto">
  

@@ -5,7 +5,7 @@ import PersonalArea from '../Area';
 
 const Header = () => {
   return (
-    <div className=" bg-headerBg">
+    <div className=" bg-headerBg ">
       <div className="container  text-xl mx-auto flex items-center justify-between h-20">
         <Link to="/">
           <Logo />
