@@ -1,12 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import Home from './components/Home';
 function App() {
   return (
     <div className="bg-appBg w-full h-screen text-textColor font-openSans">
-      <Header />
-      <Routes>
-        <Route path="test" element={''} />
-      </Routes>
+             <Header />
+      <div className="container mx-auto">
+ 
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </div>
     </div>
   );
 }

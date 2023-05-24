@@ -2,15 +2,18 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const fetchTopFilms = createAsyncThunk('/fetchTopFilms', async () => {
-  const { data } = axios.get(
+  const apiKey = import.meta.env.VITE_API_KEY;
+  const { data } = await axios.get(
     `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1`,
     {
       headers: {
-        'X-API-KEY': process.env.API_KEY,
+        'X-API-KEY': apiKey,
+        'Content-Type': 'application/json',
       },
     },
   );
-  return data;
+  const { films } = await data;
+  return films;
 });
 
 const initialState = {
@@ -30,7 +33,7 @@ export const MoviesList = createSlice({
       state.topFilms.status = 'loading';
     },
     [fetchTopFilms.fulfilled]: (state, action) => {
-      state.topFilms.status = 'loading';
+      state.topFilms.status = 'loaded';
       state.topFilms.films = action.payload;
     },
     [fetchTopFilms.rejected]: (state) => {
@@ -39,6 +42,5 @@ export const MoviesList = createSlice({
     },
   },
 });
-
 
 export const moviesList = MoviesList.reducer;
