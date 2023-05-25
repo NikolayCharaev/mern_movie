@@ -31,6 +31,21 @@ export const fetchTopAwaitFilms = createAsyncThunk('/fetchTopAwaitFilms', async 
   return films;
 });
 
+export const fetchPopularFilms = createAsyncThunk('/fetchPopularFilms', async () => {
+  const apiKey = import.meta.env.VITE_API_KEY;
+  const { data } = await axios.get(
+    `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1`,
+    {
+      headers: {
+        'X-API-KEY': apiKey,
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+  const { films } = await data;
+  return films;
+});
+
 const initialState = {
   topFilms: {
     films: [],
@@ -38,6 +53,11 @@ const initialState = {
     page: 1,
   },
   topAwaitFilms: {
+    films: [],
+    status: '',
+    page: 1,
+  },
+  topPopularFilms: {
     films: [],
     status: '',
     page: 1,
@@ -71,6 +91,18 @@ export const MoviesList = createSlice({
     [fetchTopAwaitFilms.rejected]: (state) => {
       state.topAwaitFilms.status = 'error';
       state.topAwaitFilms.films = [];
+    },
+
+    [fetchPopularFilms.pending]: (state) => {
+      state.topPopularFilms.status = 'loading';
+    },
+    [fetchPopularFilms.fulfilled]: (state, action) => {
+      state.topPopularFilms.status = 'loaded';
+      state.topPopularFilms.films = action.payload;
+    },
+    [fetchPopularFilms.rejected]: (state) => {
+      state.topPopularFilms.status = 'error';
+      state.topPopularFilms.films = [];
     },
   },
 });
