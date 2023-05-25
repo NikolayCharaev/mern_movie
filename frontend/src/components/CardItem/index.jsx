@@ -22,7 +22,7 @@ const CardItem = ({ posterUrl, filmYear, filmName, id }) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={() => dispatch(setGlobalLoading(true))}>
-        <img className="w-full h-[400px]" src={posterUrl} alt="poster" />
+        <img className="" src={posterUrl} alt="poster" />
         <div
           className={`absolute h-full w-full top-0  left-0 ${
             hovered ? 'opacity-100' : 'opacity-0'
