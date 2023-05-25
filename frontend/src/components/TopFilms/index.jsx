@@ -15,14 +15,15 @@ const TopFilms = ({ text, filmsList }) => {
           spaceBetween={10}
           slidesPerView={6}
           navigation={true}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}>
+          // onSlideChange={() => console.log('slide change')}
+          // onSwiper={(swiper) => console.log(swiper)}
+          >
           {filmsList.map((film) => {
-            const { posterUrl, year, nameRu } = film;
+            const { posterUrl, year, nameRu, filmId } = film;
             return (
               <>
-                <SwiperSlide>
-                  <CardItem posterUrl={posterUrl} filmName={nameRu} filmYear={year} />
+                <SwiperSlide key={filmId}>
+                  <CardItem posterUrl={posterUrl} filmName={nameRu} filmYear={year} id={filmId} />
                 </SwiperSlide>
               </>
             );

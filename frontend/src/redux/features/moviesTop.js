@@ -1,47 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../../axios';
 
 export const fetchTopFilms = createAsyncThunk('/fetchTopFilms', async () => {
-  const apiKey = import.meta.env.VITE_API_KEY;
-  const { data } = await axios.get(
-    `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=1`,
-    {
-      headers: {
-        'X-API-KEY': apiKey,
-        'Content-Type': 'application/json',
-      },
-    },
-  );
+  const { data } = await axios.get(`api/v2.2/films/top?type=TOP_250_BEST_FILMS`);
   const { films } = await data;
   return films;
 });
 
 export const fetchTopAwaitFilms = createAsyncThunk('/fetchTopAwaitFilms', async () => {
-  const apiKey = import.meta.env.VITE_API_KEY;
-  const { data } = await axios.get(
-    `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=1`,
-    {
-      headers: {
-        'X-API-KEY': apiKey,
-        'Content-Type': 'application/json',
-      },
-    },
-  );
+  const { data } = await axios.get(`api/v2.2/films/top?type=TOP_AWAIT_FILMS`);
   const { films } = await data;
   return films;
 });
 
 export const fetchPopularFilms = createAsyncThunk('/fetchPopularFilms', async () => {
-  const apiKey = import.meta.env.VITE_API_KEY;
-  const { data } = await axios.get(
-    `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1`,
-    {
-      headers: {
-        'X-API-KEY': apiKey,
-        'Content-Type': 'application/json',
-      },
-    },
-  );
+  const { data } = await axios.get(`api/v2.2/films/top?type=TOP_100_POPULAR_FILMS`);
   const { films } = await data;
   return films;
 });
@@ -64,7 +38,7 @@ const initialState = {
   },
 };
 
-export const MoviesList = createSlice({
+export const moviesTop = createSlice({
   name: 'Movies',
   initialState,
   reducers: {},
@@ -107,4 +81,4 @@ export const MoviesList = createSlice({
   },
 });
 
-export const moviesList = MoviesList.reducer;
+export const topMovies = moviesTop.reducer;

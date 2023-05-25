@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { moviesList } from './features/moviesList';
+import { globalLoading } from './features/globalLoading';
+import { infoMovie } from './features/movieInfo';
+import { topMovies } from './features/moviesTop';
 
 export const store = configureStore({
   reducer: {
-    allMovies: moviesList,
+    allMovies: topMovies,
+    movieInfo: infoMovie,
+    globalLoading : globalLoading
   },
 });
