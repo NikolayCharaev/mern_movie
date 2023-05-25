@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovieData } from '../../redux/features/movieInfo';
 import { useEffect } from 'react';
-import Logo from '../common/Logo';
 
 const FullCard = () => {
   const { id } = useParams();
@@ -13,7 +12,10 @@ const FullCard = () => {
   useEffect(() => {
     dispatch(fetchMovieData(id));
   }, []);
-  return <div className=''>
+
+  console.log(filmInfo)
+  return <div className="">
+    
   </div>;
 };
 
