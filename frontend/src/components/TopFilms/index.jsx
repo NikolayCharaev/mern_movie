@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import Title from '../common/Title';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import CardItem from '../CardItem';
+import CardItem from '../CardItem/FIlmItem';
+
 const TopFilms = ({ text, filmsList }) => {
   const [slidesPerView, setSlidesPerView] = useState(6);
 
@@ -41,7 +42,9 @@ const TopFilms = ({ text, filmsList }) => {
             return (
               <>
                 <SwiperSlide key={filmId}>
-                  <CardItem posterUrl={posterUrl} filmName={nameRu} filmYear={year} id={filmId} />
+                  <div>
+                    <CardItem posterUrl={posterUrl} filmName={nameRu} filmYear={year} id={filmId} />
+                  </div>
                 </SwiperSlide>
               </>
             );

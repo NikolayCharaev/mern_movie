@@ -9,6 +9,10 @@ export default {
         headerBg: '#212121',
         buttonBg: '#eb363e',
       },
+
+      boxShadow: {
+        cardShadow: '2px -100px 100px 76px rgba(22, 21, 21, 0.91) inset',
+      },
       fontFamily: {
         openSans: ['Open Sans', 'sans-serif'],
         jost: ['Jost', 'sans-serif'],

@@ -1,5 +1,14 @@
 const Title = ({ text }) => {
-  return <h3 className="font-medium text-2xl my-10 p-3 border inline-block rounded">{text}</h3>;
+  return (
+    <div>
+      <h3 className="font-medium text-2xl my-10 pb-3 inline-block relative">
+        {text}
+        <span
+          className="absolute left-0 bottom-0 w-1/2 "
+          style={{ borderBottomWidth: '3px' }}></span>
+      </h3>
+    </div>
+  );
 };
 
 export default Title;

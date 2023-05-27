@@ -3,6 +3,9 @@ import { BsYoutube } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setGlobalLoading } from '../../redux/features/globalLoading';
+
+
+
 const CardItem = ({ posterUrl, filmYear, filmName, id }) => {
   const [hovered, setHovered] = useState(false);
   const dispatch = useDispatch();
