@@ -16,12 +16,18 @@ export const fetchMovieActors = createAsyncThunk('/fetchMovieActors', async (id)
   return data.filter((elem) => elem.professionText === 'Актеры');
 });
 
+export const fetchMovieVideos = createAsyncThunk('/fetchMovieVideos', async (id) => {
+  const { data } = await axios.get(`api/v2.2/films/${id}/videos`);
+  return data.items;
+});
+
 const initialState = {
   movieData: {
     film: [],
     posters: [],
     status: '',
     actors: [],
+    videos: []
   },
 };
 
@@ -66,6 +72,19 @@ export const movieInfo = createSlice({
     },
     [fetchMovieActors.rejected]: (state) => {
       state.movieData.actors = [];
+      state.movieData.status = 'error';
+    },
+
+    [fetchMovieVideos.pending]: (state) => {
+      state.movieData.videos = [];
+      state.movieData.status = 'loading';
+    },
+    [fetchMovieVideos.fulfilled]: (state, action) => {
+      state.movieData.videos = action.payload;
+      state.movieData.status = 'loaded';
+    },
+    [fetchMovieVideos.rejected]: (state) => {
+      state.movieData.videos = [];
       state.movieData.status = 'error';
     },
   },

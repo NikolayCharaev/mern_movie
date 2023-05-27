@@ -30,13 +30,7 @@ const TopFilms = ({ text, filmsList }) => {
     <div className="mt-7">
       <Title text={text} />
       <div className="">
-        <Swiper
-          spaceBetween={10}
-          slidesPerView={slidesPerView}
-          navigation={true}
-          // onSlideChange={() => console.log('slide change')}
-          // onSwiper={(swiper) => console.log(swiper)}
-        >
+        <Swiper spaceBetween={10} slidesPerView={slidesPerView} navigation={true}>
           {filmsList.map((film) => {
             const { posterUrl, year, nameRu, filmId } = film;
             return (

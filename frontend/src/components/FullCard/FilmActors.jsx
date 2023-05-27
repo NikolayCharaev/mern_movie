@@ -19,7 +19,7 @@ const FilmActors = () => {
           modules={[Scrollbar]}
           spaceBetween={10}
           slidesPerView={4}
-          scrollbar={{ draggable: true }}
+          scrollbar={{ draggable: true, }}
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => console.log(swiper)}>
           {actors.map((elem, index) => {
@@ -36,10 +36,12 @@ const FilmActors = () => {
         <style>
           {`
             .swiper-scrollbar {
-              background-color: #ffffff83
+              background-color: #ffffff83;
+              height:5px;
             }
             .swiper-scrollbar-drag { 
               background-color: white;
+              padding : 3px
             }
           `}
         </style>
