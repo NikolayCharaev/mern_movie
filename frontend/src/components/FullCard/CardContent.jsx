@@ -63,7 +63,7 @@ const CardContent = () => {
           </div>
         </div>
       </div>
-      <div className="flex">
+      <div className="">
         <ArtPosters />
         <FilmVideo/>
       </div>

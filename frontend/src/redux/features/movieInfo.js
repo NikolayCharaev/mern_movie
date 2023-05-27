@@ -18,7 +18,7 @@ export const fetchMovieActors = createAsyncThunk('/fetchMovieActors', async (id)
 
 export const fetchMovieVideos = createAsyncThunk('/fetchMovieVideos', async (id) => {
   const { data } = await axios.get(`api/v2.2/films/${id}/videos`);
-  return data.items;
+  return data.items.filter(item => item.site === 'YOUTUBE');
 });
 
 const initialState = {
