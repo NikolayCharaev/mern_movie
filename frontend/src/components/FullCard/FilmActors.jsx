@@ -1,5 +1,5 @@
 import Title from '../common/Title';
-import ActorsItem from '../CardItem/ActorsItem';
+import ActorsItem from '../CardItem/ActorsInfo/ActorsItem';
 
 import { useSelector } from 'react-redux';
 
@@ -19,7 +19,7 @@ const FilmActors = () => {
           modules={[Scrollbar]}
           spaceBetween={10}
           slidesPerView={4}
-          scrollbar={{ draggable: true, }}
+          scrollbar={{ draggable: true }}
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => console.log(swiper)}>
           {actors.map((elem, index) => {

@@ -3,7 +3,9 @@ import FullCard from './components/FullCard';
 import Header from './components/Header';
 import Home from './components/Home';
 import Loading from './components/common/Loading';
+import OneActorItem from './components/CardItem/ActorsInfo/OneActorItem';
 import { useSelector } from 'react-redux';
+
 function App() {
   const loading = useSelector((state) => state.globalLoading.loading);
   return (
@@ -13,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:id" element={loading ? <Loading /> : <FullCard />} />
+          <Route path="/actor/:id" element={loading ? <Loading /> : <OneActorItem />} />
         </Routes>
       </div>
     </div>

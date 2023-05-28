@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setGlobalLoading } from '../../redux/features/globalLoading';
+import { setGlobalLoading } from '../../../redux/features/globalLoading';
 import { FcInfo } from 'react-icons/fc';
 
 const ActorsItem = ({ name, poster, actorId }) => {
@@ -16,13 +16,9 @@ const ActorsItem = ({ name, poster, actorId }) => {
     setHovered(false);
   };
   return (
-    <div>
-      <Link to={`/${actorId}`}>
-        <div
-          className=" relative "
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onClick={() => dispatch(setGlobalLoading(true))}>
+    <div onClick={() => dispatch(setGlobalLoading(true))}>
+      <Link to={`/actor/${actorId}`}>
+        <div className=" relative " onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           <img className="w-52 h-52 object-cover" src={poster} alt="poster" />
           <div
             className={`absolute h-full w-full top-0  left-0 ${
