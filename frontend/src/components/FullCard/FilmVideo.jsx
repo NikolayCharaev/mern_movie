@@ -28,7 +28,7 @@ const FilmVideo = () => {
             return (
               <SwiperSlide key={index} className="w-[1000px]">
                 <div className="flex justify-center flex-col items-center">
-                  <ReactPlayer url={url} controls={true} />
+                  <ReactPlayer url={url} controls={true} width='100%' height='800px'/>
                   <p>{name}</p>
                 </div>
               </SwiperSlide>

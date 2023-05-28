@@ -7,6 +7,7 @@ import {
 } from '../../redux/features/moviesTop';
 import Title from '../common/Title';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
 import 'swiper/css';
 import CardItem from '../CardItem/FIlmItem';
 
@@ -41,8 +42,10 @@ const TopFilms = ({ text, filmsList }) => {
       <Title text={text} />
       <div className="">
         <Swiper
+          modules={[Navigation]}
           spaceBetween={10}
           slidesPerView={slidesPerView}
+          navigation
           onReachEnd={() => {
             if (text === 'Топ за все время') {
               setTopFilms(topFilms + 1);
@@ -70,13 +73,20 @@ const TopFilms = ({ text, filmsList }) => {
         </Swiper>
         <style>
           {`
-            .swiper-scrollbar {
-              background-color: #ffffff83;
-              height:5px;
+            .swiper-button-prev {
+              background-color: rgba(166, 160, 160, 0.5);
+              width: 40px;
+              height: 110%;
+              z-index: 100;
+              left: 0;
+              top: 0;
             }
-            .swiper-scrollbar-drag { 
-              background-color: white;
-              padding : 3px
+            .swiper-button-next { 
+              background-color: rgba(166, 160, 160, 0.5);
+              width: 40px;
+              height: 110%;
+              right: 0;
+              top: 0;
             }
           `}
         </style>
