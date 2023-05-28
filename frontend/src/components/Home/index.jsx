@@ -11,9 +11,9 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTopFilms());
-    dispatch(fetchTopAwaitFilms());
-    dispatch(fetchPopularFilms());
+    dispatch(fetchTopFilms(1));
+    dispatch(fetchTopAwaitFilms(1));
+    dispatch(fetchPopularFilms(1));
   }, []);
   const topFilms = useSelector((state) => state.allMovies.topFilms.films);
   const awaitFilms = useSelector((state) => state.allMovies.topAwaitFilms.films);

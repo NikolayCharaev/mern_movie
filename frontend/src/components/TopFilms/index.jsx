@@ -1,10 +1,20 @@
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  fetchTopFilms,
+  fetchTopAwaitFilms,
+  fetchPopularFilms,
+} from '../../redux/features/moviesTop';
 import Title from '../common/Title';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import CardItem from '../CardItem/FIlmItem';
 
 const TopFilms = ({ text, filmsList }) => {
+  const [topFilms, setTopFilms] = useState(1);
+  const [awaitFilms, setAwaitFilms] = useState(1);
+  const [popularFilms, setPopularFilms] = useState(1);
+  const dispatch = useDispatch();
   const [slidesPerView, setSlidesPerView] = useState(6);
 
   useEffect(() => {
@@ -30,7 +40,21 @@ const TopFilms = ({ text, filmsList }) => {
     <div className="mt-7">
       <Title text={text} />
       <div className="">
-        <Swiper spaceBetween={10} slidesPerView={slidesPerView} >
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={slidesPerView}
+          onReachEnd={() => {
+            if (text === 'Топ за все время') {
+              setTopFilms(topFilms + 1);
+              dispatch(fetchTopFilms(topFilms));
+            } else if (text === 'Самые ожидаемые фильмы') {
+              setAwaitFilms(awaitFilms + 1);
+              // dispatch(fetchTopAwaitFilms(awaitFilms));
+            } else if (text === 'Популярные фильмы') {
+              setPopularFilms(popularFilms + 1);
+              dispatch(fetchPopularFilms(popularFilms));
+            }
+          }}>
           {filmsList.map((film) => {
             const { posterUrl, year, nameRu, filmId } = film;
             return (
@@ -44,6 +68,18 @@ const TopFilms = ({ text, filmsList }) => {
             );
           })}
         </Swiper>
+        <style>
+          {`
+            .swiper-scrollbar {
+              background-color: #ffffff83;
+              height:5px;
+            }
+            .swiper-scrollbar-drag { 
+              background-color: white;
+              padding : 3px
+            }
+          `}
+        </style>
       </div>
     </div>
   );

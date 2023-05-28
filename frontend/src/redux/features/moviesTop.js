@@ -2,20 +2,20 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // import axios from 'axios';
 import axios from '../../axios';
 
-export const fetchTopFilms = createAsyncThunk('/fetchTopFilms', async () => {
-  const { data } = await axios.get(`api/v2.2/films/top?type=TOP_250_BEST_FILMS`);
+export const fetchTopFilms = createAsyncThunk('/fetchTopFilms', async (page) => {
+  const { data } = await axios.get(`api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`);
   const { films } = await data;
   return films;
 });
 
-export const fetchTopAwaitFilms = createAsyncThunk('/fetchTopAwaitFilms', async () => {
-  const { data } = await axios.get(`api/v2.2/films/top?type=TOP_AWAIT_FILMS`);
+export const fetchTopAwaitFilms = createAsyncThunk('/fetchTopAwaitFilms', async (page) => {
+  const { data } = await axios.get(`api/v2.2/films/top?type=TOP_AWAIT_FILMS&page=${page}`);
   const { films } = await data;
   return films;
 });
 
-export const fetchPopularFilms = createAsyncThunk('/fetchPopularFilms', async () => {
-  const { data } = await axios.get(`api/v2.2/films/top?type=TOP_100_POPULAR_FILMS`);
+export const fetchPopularFilms = createAsyncThunk('/fetchPopularFilms', async (page) => {
+  const { data } = await axios.get(`api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${page}`);
   const { films } = await data;
   return films;
 });
@@ -41,7 +41,17 @@ const initialState = {
 export const moviesTop = createSlice({
   name: 'Movies',
   initialState,
-  reducers: {},
+  reducers: {
+    topFilmsNext: (state) => {
+      ++state.topFilms.page;
+    },
+    topAwaitFilmsNext: (state) => {
+      ++state.topAwaitFilms.page;
+    },
+    topPopularFilmsNext: (state) => {
+      ++state.topPopularFilms.page;
+    },
+  },
   extraReducers: {
     [fetchTopFilms.pending]: (state) => {
       state.topFilms.status = 'loading';
@@ -81,4 +91,5 @@ export const moviesTop = createSlice({
   },
 });
 
+export const { topFilmsNext, topAwaitFilmsNext, topPopularFilmsNext } = moviesTop.actions;
 export const topMovies = moviesTop.reducer;
