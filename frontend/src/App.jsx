@@ -13,7 +13,7 @@ function App() {
       <Header />
       <div className="container mx-auto">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/movieLand" element={<Home />} />
           <Route path="/:id" element={loading ? <Loading /> : <FullCard />} />
           <Route path="/actor/:id" element={loading ? <Loading /> : <OneActorItem />} />
         </Routes>

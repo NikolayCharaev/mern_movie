@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <div className=" bg-headerBg ">
       <div className="container  text-xl mx-auto flex items-center justify-between h-20">
-        <Link to="/">
+        <Link to="/movieLand">
           <Logo />
         </Link>
 
