@@ -4,7 +4,12 @@ import { useForm } from 'react-hook-form';
 import Button from '../common/Button';
 import Title from '../common/Title';
 
+import { fetchRegisterUser } from '../../redux/user/auth';
+import { useDispatch } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+
 const Login = () => {
+    const dispatch= useDispatch()
   const {
     register,
     handleSubmit,
@@ -14,8 +19,10 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
+    dispatch(fetchRegisterUser(data))
     reset();
   };
+  
   return (
     <>
       <div className="flex justify-center items-center w-full h-screen ">

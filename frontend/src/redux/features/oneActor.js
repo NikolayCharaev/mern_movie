@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../axios';
+import axios from '../../../interceptors/MovieInterceptor';
 
 export const fetchActorInfo = createAsyncThunk('actor/FetchActorInfo', async (id) => {
   const { data } = await axios.get(`api/v1/staff/${id}`);

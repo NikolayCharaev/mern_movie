@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../axios';
+import axios from '../../../interceptors/MovieInterceptor';
 
 export const fetchSearchFilms = createAsyncThunk('/films/fetchSearchFilms', async (params) => {
   const { data } = await axios.get(`api/v2.1/films/search-by-keyword?keyword=${params}&page=1`);

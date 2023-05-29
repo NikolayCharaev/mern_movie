@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../axios';
+import axios from '../../../interceptors/MovieInterceptor';
 
 export const fetchMovieData = createAsyncThunk('/fetchMovieData', async (id) => {
   const { data } = await axios.get(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}`);
@@ -18,7 +18,7 @@ export const fetchMovieActors = createAsyncThunk('/fetchMovieActors', async (id)
 
 export const fetchMovieVideos = createAsyncThunk('/fetchMovieVideos', async (id) => {
   const { data } = await axios.get(`api/v2.2/films/${id}/videos`);
-  return data.items.filter(item => item.site === 'YOUTUBE');
+  return data.items.filter((item) => item.site === 'YOUTUBE');
 });
 
 const initialState = {
@@ -27,7 +27,7 @@ const initialState = {
     posters: [],
     status: '',
     actors: [],
-    videos: []
+    videos: [],
   },
 };
 

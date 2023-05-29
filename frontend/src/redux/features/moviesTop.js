@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 // import axios from 'axios';
-import axios from '../../axios';
+import axios from '../../../interceptors/MovieInterceptor';
 
 export const fetchTopFilms = createAsyncThunk('/fetchTopFilms', async (page) => {
   const { data } = await axios.get(`api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${page}`);
