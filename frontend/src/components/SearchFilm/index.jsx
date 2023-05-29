@@ -30,7 +30,6 @@ const SearchFilms = () => {
           text={status === 'loading' ? <ImSpinner8 className="animate-spin h-7" /> : 'поиск'}
           onClick={(e) => {
             e.preventDefault();
-
             dispatch(fetchSearchFilms(value));
             setValue('');
           }}
@@ -47,7 +46,9 @@ const SearchFilms = () => {
                 return (
                   <>
                     <Link to={`/${filmId}`}>
-                      <div className="p-3 rounded bg-headerBg">
+                      <div className="p-3 rounded bg-headerBg" onClick={() => { 
+                        dispatch(setGlobalLoading(true))
+                      }}>
                         <div className="">
                           <img src={posterUrl} className="w-72 h-96 object-cover " alt="" />
                         </div>
