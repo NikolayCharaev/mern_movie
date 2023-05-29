@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Loading from './components/common/Loading';
 import OneActorItem from './components/CardItem/ActorsInfo/OneActorItem';
+import SearchFilms from './components/SearchFilm';
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       <Header />
       <div className="container mx-auto">
         <Routes>
-          <Route path="/movieLand" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path='/films/search' element={<SearchFilms/>}/>
           <Route path="/:id" element={loading ? <Loading /> : <FullCard />} />
           <Route path="/actor/:id" element={loading ? <Loading /> : <OneActorItem />} />
         </Routes>

@@ -1,4 +1,3 @@
-import React from 'react';
 import Title from '../../common/Title';
 
 const ActorFacts = ({ facts }) => {
@@ -11,10 +10,11 @@ const ActorFacts = ({ facts }) => {
         {facts.map((elem, id) => {
           return (
             <p className="mb-2">
-              {id + 1 + ' '}) {' '} {elem}
+              {id + 1 + ' '}) {elem}
             </p>
           );
         })}
+        {facts.length <= 0 && <p>Нет интересных фактов об этом актере</p>}
       </div>
     </div>
   );

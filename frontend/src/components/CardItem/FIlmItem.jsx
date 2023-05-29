@@ -19,7 +19,7 @@ const CardItem = ({ posterUrl, filmYear, filmName, id }) => {
   return (
     <Link to={`/${id}`}>
       <div
-        className=" relative "
+        className="relative "
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={() => dispatch(setGlobalLoading(true))}>
