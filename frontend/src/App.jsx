@@ -6,6 +6,8 @@ import Loading from './components/common/Loading';
 import OneActorItem from './components/CardItem/ActorsInfo/OneActorItem';
 import SearchFilms from './components/SearchFilm';
 import { useSelector } from 'react-redux';
+import Register from './components/Account/Register';
+import Login from './components/Account/Login';
 
 function App() {
   const loading = useSelector((state) => state.globalLoading.loading);
@@ -17,7 +19,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path='/films/search' element={<SearchFilms/>}/>
           <Route path="/:id" element={loading ? <Loading /> : <FullCard />} />
-          <Route path="/actor/:id" element={loading ? <Loading /> : <OneActorItem />} />
+          <Route path="/actor/:id" element={loading ? <Loading /> : 
+          <OneActorItem />} />
+
+          <Route path='/register' element={<Register/>}/>
+          <Route path='/login' element={<Login/>}/>
         </Routes>
       </div>
     </div>

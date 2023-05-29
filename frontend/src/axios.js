@@ -5,9 +5,9 @@ const instance = axios.create({
   headers: { 'X-API-KEY': apiKey, 'Content-Type': 'application/json' },
 });
 
-instance.interceptors.request.use((config) => {
-  config.headers.Authorization = window.localStorage.getItem('token');
-  return config;
-});
+// instance.interceptors.request.use((config) => {
+//   config.headers.Authorization = window.localStorage.getItem('token');
+//   return config;
+// });
 
 export default instance;

@@ -10,8 +10,12 @@ const PersonalArea = () => {
         </Link>
       </div>
 
-      <Button text="войти" />
-      <Button text="зарегистрироваться" />
+      <Link to="/login">
+        <Button text="войти" />
+      </Link>
+      <Link to="/register">
+        <Button text="зарегистрироваться" />
+      </Link>
     </div>
   );
 };
