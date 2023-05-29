@@ -14,6 +14,11 @@ const initialState = {
 export const searchFilm = createSlice({
   name: 'search',
   initialState,
+  reducers: {
+    setClearFilms: (state) => {
+      state.items = [];
+    },
+  },
   extraReducers: {
     [fetchSearchFilms.pending]: (state) => {
       state.status = 'loading';
@@ -28,5 +33,7 @@ export const searchFilm = createSlice({
     },
   },
 });
+
+export const { setClearFilms } = searchFilm.actions;
 
 export const searchFilmSlice = searchFilm.reducer;
