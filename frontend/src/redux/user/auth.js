@@ -3,12 +3,22 @@ import axios from '../../../interceptors/UserInterceptor';
 
 export const fetchRegisterUser = createAsyncThunk('/auth/fetchRegister', async (params) => {
   const { data } = await axios.post('/register', params);
-  return data
+  return data;
+});
+
+export const fetchAuthUser = createAsyncThunk('auth/fetchAuthUser', async (params) => {
+  const { data } = await axios.post('/login', params);
+  return data;
+});
+
+export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
+  const { data } = await axios.get('/me');
+  return data;
 });
 
 const initialState = {
   user: [],
-  status: '',
+  status: [],
 };
 
 export const authSlice = createSlice({
@@ -16,20 +26,44 @@ export const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchRegisterUser.pending] : (state) => { 
-        state.user = []
-        state.status = 'loading'
+    [fetchRegisterUser.pending]: (state) => {
+      state.user = [];
+      state.status = 'loading';
     },
-    [fetchRegisterUser.fulfilled] : (state, action) => { 
-        state.user = action.payload
-        state.status = 'loaded'
+    [fetchRegisterUser.fulfilled]: (state, action) => {
+      state.user = action.payload;
+      state.status = 'loaded';
     },
-    [fetchRegisterUser.rejected] : (state) => { 
-        state.user = []
-        state.status = 'error'
+    [fetchRegisterUser.rejected]: (state) => {
+      state.user = [];
+      state.status = 'error';
+    },
+
+    [fetchAuthUser.pending]: (state) => {
+      state.user = [];
+      state.status = 'loading';
+    },
+    [fetchAuthUser.fulfilled]: (state, action) => {
+      state.user = action.payload;
+      state.status = 'loaded';
+    },
+    [fetchAuthUser.rejected]: (state) => {
+      state.user = [];
+      state.status = 'error';
+    },
+
+    [fetchAuthMe.pending]: (state) => {
+      state.status = 'loading';
+    },
+    [fetchAuthMe.fulfilled]: (state, action) => {
+      state.status = 'loaded';
+      state.user = action.payload;
+    },
+    [fetchAuthMe.rejected]: (state) => {
+      state.status = 'error';
+      state.user = [];
     },
   },
 });
-
-
-export const userSlice = authSlice.reducer
+export const selectIsAuth = (state) => Boolean(state.auth.user);
+export const userSlice = authSlice.reducer;

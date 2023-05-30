@@ -1,15 +1,18 @@
-import React from 'react';
+import { useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
 import Button from '../common/Button';
 import Title from '../common/Title';
 
 import { fetchRegisterUser } from '../../redux/user/auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-const Login = () => {
-    const dispatch= useDispatch()
+import { CgSmileSad } from 'react-icons/cg';
+import { selectIsAuth } from '../../redux/user/auth';
+
+const Register = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -17,12 +20,26 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    dispatch(fetchRegisterUser(data))
+  const { user, status } = useSelector((state) => state.userSlice);
+  const { userData } = user;
+
+  if (userData) {
+    return <Navigate to="/" />;
+  }
+
+  const onSubmit = async (values) => {
+    const data = await dispatch(fetchRegisterUser(values));
+    if (!data.payload) {
+      return;
+    }
+    if ('token' in data.payload) {
+      window.localStorage.setItem('token', data.payload.token);
+    } else {
+      return alert('Не удалось авторизоваться');
+    }
     reset();
+    return data;
   };
-  
   return (
     <>
       <div className="flex justify-center items-center w-full h-screen ">
@@ -83,4 +100,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

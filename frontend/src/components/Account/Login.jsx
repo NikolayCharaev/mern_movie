@@ -1,10 +1,13 @@
-import React from 'react';
-
 import { useForm } from 'react-hook-form';
 import Button from '../common/Button';
 import Title from '../common/Title';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAuthUser } from '../../redux/user/auth';
+import { Navigate } from 'react-router-dom';
+
 const Login = () => {
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -14,8 +17,17 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    reset()
+    dispatch(fetchAuthUser(data));
+    reset();
   };
+
+  const { user, status } = useSelector((state) => state.userSlice);
+  const { userData } = user;
+
+  if (userData) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <>
       <div className="flex justify-center items-center w-full h-screen">
@@ -35,7 +47,7 @@ const Login = () => {
                 required: 'поле обязательно для заполнения',
               })}
             />
-             {(errors.email?.type === 'required' || errors.email?.type === 'pattern') && (
+            {(errors.email?.type === 'required' || errors.email?.type === 'pattern') && (
               <p className="text-sm text-red-500 mt-2">{errors.email.message}</p>
             )}
             <input
@@ -46,10 +58,10 @@ const Login = () => {
                 required: 'поле обязательно для заполнения',
               })}
             />
-             {(errors.password?.type === 'required' || errors.email?.type === 'pattern') && (
+            {(errors.password?.type === 'required' || errors.email?.type === 'pattern') && (
               <p className="text-sm text-red-500 mt-2">{errors.email.message}</p>
             )}
-            <Button type='submit' text="войти" styles={'px-16'} />
+            <Button type="submit" text="войти" styles={'px-16'} />
           </form>
         </div>
       </div>

@@ -6,6 +6,7 @@ import {
 } from '../../redux/features/moviesTop';
 import { useDispatch, useSelector } from 'react-redux';
 import TopFilms from '../TopFilms';
+import { fetchAuthMe } from '../../redux/user/auth';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,9 @@ const Home = () => {
     dispatch(fetchTopFilms(1));
     dispatch(fetchTopAwaitFilms(1));
     dispatch(fetchPopularFilms(1));
+
+
+    dispatch(fetchAuthMe())
   }, []);
   const topFilms = useSelector((state) => state.allMovies.topFilms.films);
   const awaitFilms = useSelector((state) => state.allMovies.topAwaitFilms.films);

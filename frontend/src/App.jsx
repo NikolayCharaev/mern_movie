@@ -17,13 +17,12 @@ function App() {
       <div className="container mx-auto">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path='/films/search' element={<SearchFilms/>}/>
+          <Route path="/films/search" element={<SearchFilms />} />
           <Route path="/:id" element={loading ? <Loading /> : <FullCard />} />
-          <Route path="/actor/:id" element={loading ? <Loading /> : 
-          <OneActorItem />} />
+          <Route path="/actor/:id" element={loading ? <Loading /> : <OneActorItem />} />
 
-          <Route path='/register' element={<Register/>}/>
-          <Route path='/login' element={<Login/>}/>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </div>
     </div>
