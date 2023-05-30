@@ -15,10 +15,21 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-    dispatch(fetchAuthUser(data));
+  const onSubmit = async (values) => {
+    // console.log(data);
+    // dispatch(fetchAuthUser(data));
+
+    const data = await dispatch(fetchAuthUser(values));
+    if (!data.payload) {
+      return;
+    }
+    if ('token' in data.payload) {
+      window.localStorage.setItem('token', data.payload.token);
+    } else {
+      return alert('Не удалось авторизоваться');
+    }
     reset();
+    return data;
   };
 
   const { user, status } = useSelector((state) => state.userSlice);
