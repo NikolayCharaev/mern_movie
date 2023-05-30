@@ -90,3 +90,14 @@ export const getMe = async (req, res, next) => {
     console.log(err);
   }
 };
+
+
+export const favorite = async(req,res) => { 
+  try{
+    
+  }catch(err){ 
+    return res.status(500).json({
+      message : "Не удалось добавить фильм"
+    })
+  }
+}

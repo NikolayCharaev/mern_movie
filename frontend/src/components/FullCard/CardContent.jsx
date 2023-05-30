@@ -1,9 +1,12 @@
 import { useSelector } from 'react-redux';
+import Button from '../common/Button';
 import Genres from '../common/Genres';
 import Title from '../common/Title';
 import ArtPosters from './ArtPosters';
 import FilmActors from './FilmActors';
 import FilmVideo from './FilmVideo';
+
+import {AiFillHeart} from 'react-icons/ai'
 
 const CardContent = () => {
   const { film } = useSelector((state) => state.movieInfo.movieData);
@@ -31,7 +34,7 @@ const CardContent = () => {
             <h1 className="text-3xl">({year})</h1>
           </div>
           <div className="flex items-end mb-8 ">
-          <p className="ml-4 border p-2 rounded">{ratingKinopoisk}</p>
+            <p className="ml-4 border p-2 rounded">{ratingKinopoisk}</p>
 
             {genres &&
               genres.map((item) => {
@@ -46,18 +49,23 @@ const CardContent = () => {
 
           <p className=" text-xl mb-3">{description}</p>
 
-          <p>
-            Cтрана:{' '}
-            {countries &&
-              countries.map((elem, index) => {
-                const { country } = elem;
-                return (
-                  <span key={index}>
-                    {country} {index !== countries.length - 1 && ', '}{' '}
-                  </span>
-                );
-              })}
-          </p>
+          <div className="flex gap-10 items-center">
+            <p>
+              Cтрана:{' '}
+              {countries &&
+                countries.map((elem, index) => {
+                  const { country } = elem;
+                  return (
+                    <span key={index}>
+                      {country} {index !== countries.length - 1 && ', '}{' '}
+                    </span>
+                  );
+                })}
+            </p>
+            
+            <Button text={<AiFillHeart/>} onClick={() => alert('penis')}/>
+          </div>
+
           <div className="mb-10">
             <FilmActors />
           </div>
@@ -65,7 +73,7 @@ const CardContent = () => {
       </div>
       <div className="">
         <ArtPosters />
-        <FilmVideo/>
+        <FilmVideo />
       </div>
     </div>
   );

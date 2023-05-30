@@ -24,7 +24,12 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'register',
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      state.user = [];
+      window.localStorage.removeItem('token');
+    },
+  },
   extraReducers: {
     [fetchRegisterUser.pending]: (state) => {
       state.user = [];
@@ -65,5 +70,7 @@ export const authSlice = createSlice({
     },
   },
 });
+
+export const { logout } = authSlice.actions;
 export const selectIsAuth = (state) => Boolean(state.auth.user);
 export const userSlice = authSlice.reducer;
