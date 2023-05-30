@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import UserModal from '../models/User.js';
+import FilmModal from '../models/Film.js'
 
 export const register = async (req, res) => {
   try {
@@ -90,14 +91,3 @@ export const getMe = async (req, res, next) => {
     console.log(err);
   }
 };
-
-
-export const favorite = async(req,res) => { 
-  try{
-    
-  }catch(err){ 
-    return res.status(500).json({
-      message : "Не удалось добавить фильм"
-    })
-  }
-}

@@ -15,11 +15,16 @@ const UserModal = new mongoose.Schema(
       type: String,
       required: true,
     },
+    favorites: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Films',
+      },
+    ],
   },
   {
     timestamps: true,
   },
 );
 
-
-export default mongoose.model('Users', UserModal)
+export default mongoose.model('Users', UserModal);

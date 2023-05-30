@@ -5,6 +5,7 @@ import { topMovies } from './features/moviesTop';
 import { actorInfoSlice } from './features/oneActor';
 import { searchFilmSlice } from './features/searchFilm';
 import { userSlice } from './user/auth';
+import { favoriteFilms } from './favorites/favoriteFilm';
 export const store = configureStore({
   reducer: {
     allMovies: topMovies,
@@ -13,5 +14,6 @@ export const store = configureStore({
     actorInfo: actorInfoSlice,
     searchFilm: searchFilmSlice,
     userSlice: userSlice,
+    favoriteFilms: favoriteFilms,
   },
 });

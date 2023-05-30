@@ -8,6 +8,7 @@ import SearchFilms from './components/SearchFilm';
 import { useSelector } from 'react-redux';
 import Register from './components/Account/Register';
 import Login from './components/Account/Login';
+import Favorites from './components/Favorites';
 
 function App() {
   const loading = useSelector((state) => state.globalLoading.loading);
@@ -23,6 +24,7 @@ function App() {
 
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path='/films/favorites' element={<Favorites/>}/>
         </Routes>
       </div>
     </div>

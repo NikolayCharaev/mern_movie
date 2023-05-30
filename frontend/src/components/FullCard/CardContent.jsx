@@ -1,14 +1,15 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from '../common/Button';
 import Genres from '../common/Genres';
 import Title from '../common/Title';
 import ArtPosters from './ArtPosters';
 import FilmActors from './FilmActors';
 import FilmVideo from './FilmVideo';
-
-import {AiFillHeart} from 'react-icons/ai'
+import { AiFillHeart } from 'react-icons/ai';
+import { fetchAddFilm } from '../../redux/favorites/favoriteFilm';
 
 const CardContent = () => {
+  const dispatch = useDispatch();
   const { film } = useSelector((state) => state.movieInfo.movieData);
   const {
     nameRu,
@@ -20,8 +21,17 @@ const CardContent = () => {
     genres,
     posterUrl,
     shortDescription,
-    id,
+    kinopoiskId,
   } = film;
+
+  const favoriteFilmAdding = {
+    nameRu: nameRu,
+    year: year,
+    posterUrl: posterUrl,
+    kinopoiskId: kinopoiskId,
+  };
+
+  console.log(favoriteFilmAdding)
   return (
     <div className="px-20 ">
       <div className="flex gap-4 font-jost">
@@ -39,7 +49,7 @@ const CardContent = () => {
             {genres &&
               genres.map((item) => {
                 const { genre } = item;
-                return <Genres genre={genre} key={id} />;
+                return <Genres genre={genre} key={kinopoiskId} />;
               })}
           </div>
 
@@ -62,8 +72,11 @@ const CardContent = () => {
                   );
                 })}
             </p>
-            
-            <Button text={<AiFillHeart/>} onClick={() => alert('penis')}/>
+
+            <Button
+              text={<AiFillHeart />}
+              onClick={() => dispatch(fetchAddFilm(favoriteFilmAdding))}
+            />
           </div>
 
           <div className="mb-10">

@@ -9,6 +9,7 @@ import {
 import { useEffect } from 'react';
 import CardContent from './CardContent';
 
+import { fetchAuthMe } from '../../redux/user/auth';
 const FullCard = () => {
   const { id } = useParams();
   const { posters } = useSelector((state) => state.movieInfo.movieData);
@@ -24,10 +25,11 @@ const FullCard = () => {
     dispatch(fetchMoviePosters(id));
     dispatch(fetchMovieActors(id));
     dispatch(fetchMovieVideos(id));
+    dispatch(fetchAuthMe());
   }, []);
 
   const randomPoster = getRandomElement(posters);
-  const {coverUrl} = useSelector(state => state.movieInfo.movieData.film)
+  const { coverUrl } = useSelector((state) => state.movieInfo.movieData.film);
 
   return (
     <>
