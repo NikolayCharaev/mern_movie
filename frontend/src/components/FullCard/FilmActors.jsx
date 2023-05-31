@@ -20,8 +20,9 @@ const FilmActors = () => {
           spaceBetween={10}
           slidesPerView={4}
           scrollbar={{ draggable: true }}
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}>
+          // onSlideChange={() => console.log('slide change')}
+          // onSwiper={(swiper) => console.log(swiper)}
+          >
           {actors.map((elem, index) => {
             const { nameRu, posterUrl, staffId } = elem;
             return (

@@ -17,8 +17,9 @@ const ArtPosters = () => {
         spaceBetween={10}
         slidesPerView={1}
         navigation
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}>
+        // onSlideChange={() => console.log('slide change')}
+        // onSwiper={(swiper) => console.log(swiper)}
+        >
         {posters.map((item, index) => {
           return (
             <SwiperSlide key={index}>

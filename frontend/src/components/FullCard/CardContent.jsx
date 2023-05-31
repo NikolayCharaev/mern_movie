@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '../common/Button';
 import Genres from '../common/Genres';
@@ -6,15 +7,16 @@ import ArtPosters from './ArtPosters';
 import FilmActors from './FilmActors';
 import FilmVideo from './FilmVideo';
 import { AiFillHeart } from 'react-icons/ai';
-import { fetchAddFilm } from '../../redux/favorites/favoriteFilm';
+import { fetchAddFilm, fetchFavoriteList } from '../../redux/favorites/favoriteFilm';
 
 const CardContent = () => {
   const dispatch = useDispatch();
+  // const [isFavorite, setIsFavorite] = useState(false);
+  const [filmFavorite, setFilmFavorite] = useState(false);
   const { film } = useSelector((state) => state.movieInfo.movieData);
   const {
     nameRu,
     ratingKinopoisk,
-    slogan,
     year,
     description,
     countries,
@@ -29,9 +31,20 @@ const CardContent = () => {
     year: year,
     posterUrl: posterUrl,
     kinopoiskId: kinopoiskId,
+    isFavorite: true,
   };
 
-  console.log(favoriteFilmAdding)
+  const { films } = useSelector((state) => state.favoriteFilms);
+
+  // films.some((elem) => {
+  //   if (elem.kinopoiskId === kinopoiskId) {
+  //     setIsFavorite(true);
+  //   }
+  // });
+  useEffect(() => {
+    dispatch(fetchFavoriteList());
+  }, []);
+
   return (
     <div className="px-20 ">
       <div className="flex gap-4 font-jost">
@@ -45,11 +58,10 @@ const CardContent = () => {
           </div>
           <div className="flex items-end mb-8 ">
             <p className="ml-4 border p-2 rounded">{ratingKinopoisk}</p>
-
             {genres &&
-              genres.map((item) => {
+              genres.map((item, index) => {
                 const { genre } = item;
-                return <Genres genre={genre} key={kinopoiskId} />;
+                return <Genres genre={genre} key={index} />;
               })}
           </div>
 
@@ -73,10 +85,27 @@ const CardContent = () => {
                 })}
             </p>
 
-            <Button
-              text={<AiFillHeart />}
-              onClick={() => dispatch(fetchAddFilm(favoriteFilmAdding))}
-            />
+            {films.some((elem) => {
+              console.log(elem);
+              if (
+                (elem.isFavorite === true && elem.kinopoiskId === kinopoiskId) ||
+                filmFavorite === true
+              ) {
+                return true;
+              }
+            }) ? (
+              <p className="bg-blue-600 text-2xl p-2 rounded">
+                <AiFillHeart className="text-green-500" />
+              </p>
+            ) : (
+              <Button
+                text={<AiFillHeart />}
+                onClick={() => {
+                  dispatch(fetchAddFilm(favoriteFilmAdding));
+                  setFilmFavorite(true);
+                }}
+              />
+            )}
           </div>
 
           <div className="mb-10">

@@ -17,6 +17,9 @@ const FilmModel = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users',
   },
+  isFavorite: {
+    type: Boolean,
+  },
 });
 
 export default mongoose.model('Films', FilmModel);

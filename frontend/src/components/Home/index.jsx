@@ -7,6 +7,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import TopFilms from '../TopFilms';
 import { fetchAuthMe } from '../../redux/user/auth';
+import { fetchFavoriteList } from '../../redux/favorites/favoriteFilm';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const Home = () => {
     dispatch(fetchTopFilms(1));
     dispatch(fetchTopAwaitFilms(1));
     dispatch(fetchPopularFilms(1));
-
+    dispatch(fetchFavoriteList());
 
     dispatch(fetchAuthMe())
   }, []);

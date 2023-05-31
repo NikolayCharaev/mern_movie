@@ -3,7 +3,7 @@ import UserModel from '../models/User.js';
 
 export const addFavoriteFilm = async (req, res) => {
   try {
-    const { posterUrl, year, nameRu, kinopoiskId } = req.body;
+    const { posterUrl, year, nameRu, kinopoiskId, isFavorite } = req.body;
     const userId = req.userId;
     const film = new FilmModel({
       posterUrl,
@@ -11,6 +11,7 @@ export const addFavoriteFilm = async (req, res) => {
       nameRu,
       kinopoiskId,
       user: userId,
+      isFavorite,
     });
 
     const newFilm = await film.save();

@@ -22,6 +22,7 @@ export const searchFilm = createSlice({
   extraReducers: {
     [fetchSearchFilms.pending]: (state) => {
       state.status = 'loading';
+      state.items = [];
     },
     [fetchSearchFilms.fulfilled]: (state, action) => {
       state.items = action.payload;

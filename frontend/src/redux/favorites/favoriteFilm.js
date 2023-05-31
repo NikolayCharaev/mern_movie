@@ -22,9 +22,11 @@ export const favoriteSlice = createSlice({
   extraReducers: {
     [fetchAddFilm.pending]: (state) => {
       state.status = 'loading';
+      state.isAdding = false;
     },
     [fetchAddFilm.fulfilled]: (state, action) => {
       state.status = action.payload;
+      state.isAdding = true;
     },
     [fetchAddFilm.rejected]: (state) => {
       state.status = 'error';

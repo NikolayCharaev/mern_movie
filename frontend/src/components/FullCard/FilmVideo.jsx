@@ -20,15 +20,15 @@ const FilmVideo = () => {
           spaceBetween={10}
           slidesPerView={1}
           navigation
-          onSlideChange={() => console.log('slide change')}
-          onSwiper={(swiper) => console.log(swiper)}>
+          // onSlideChange={() => console.log('slide change')}
+          // onSwiper={(swiper) => console.log(swiper)}
+          >
           {videos.map((item, index) => {
             const { url, name } = item;
-            console.log(url);
             return (
               <SwiperSlide key={index} className="w-[1000px]">
                 <div className="flex justify-center flex-col items-center">
-                  <ReactPlayer url={url} controls={true} width='100%' height='800px'/>
+                  <ReactPlayer url={url} controls={true} width="100%" height="800px" />
                   <p>{name}</p>
                 </div>
               </SwiperSlide>
