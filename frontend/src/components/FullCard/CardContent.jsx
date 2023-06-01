@@ -52,7 +52,7 @@ const CardContent = () => {
             <h1 className="text-3xl">({year})</h1>
           </div>
           <div className="flex items-end mb-8 ">
-            <p className="ml-4 border p-2 rounded">{ratingKinopoisk}</p>
+            <p className={ratingKinopoisk ? 'ml-4 border p-2 rounded' : 'hinnde'}>{ratingKinopoisk}</p>
             {genres &&
               genres.map((item, index) => {
                 const { genre } = item;

@@ -1,5 +1,4 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Title from '../common/Title';
 
@@ -9,6 +8,7 @@ import 'swiper/css/navigation';
 
 const ArtPosters = () => {
   const {posters} = useSelector((state) => state.movieInfo.movieData);
+  
   return (
     <div className="">
       <Title text="Изображения из ленты" />
