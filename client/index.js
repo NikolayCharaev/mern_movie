@@ -11,7 +11,11 @@ app.use(express.json());
 app.use(cors());
 dotenv.config();
 
-app.listen(process.env.PORT, () => {
+// app.listen(process.env.PORT, () => {
+//   console.log('сервер запущен');
+// });
+
+app.listen('mern-movie-client.vercel.app', () => {
   console.log('сервер запущен');
 });
 mongoose
