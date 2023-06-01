@@ -6,8 +6,13 @@ import { fetchAuthMe } from '../../redux/user/auth';
 import Title from '../common/Title';
 
 import { HiOutlineEmojiSad } from 'react-icons/hi';
+import { AiFillDelete } from 'react-icons/ai';
 
 import { Link } from 'react-router-dom';
+import Button from '../common/Button';
+
+import { fetchRemoveFilm } from '../../redux/favorites/favoriteFilm';
+
 const Favorites = () => {
   const dispatch = useDispatch();
 
@@ -17,7 +22,6 @@ const Favorites = () => {
   }, []);
 
   const { films } = useSelector((state) => state.favoriteFilms);
-  console.log(films);
   return (
     <div>
       <Title text="Мои фильмы" />
@@ -29,13 +33,13 @@ const Favorites = () => {
       )}
       <div className="grid grid-cols-5 gap-4 pb-20 ">
         {films.map((elem, index) => {
-          const { kinopoiskId, posterUrl, nameRu } = elem;
-          console.log(elem);
+          const { kinopoiskId, posterUrl, nameRu, _id } = elem;
           return (
             <>
               <Link to={`/${kinopoiskId}`}>
                 <div
-                  className="p-3 rounded bg-headerBg"
+                  key={_id}
+                  className="p-3 rounded bg-headerBg relative"
                   onClick={() => {
                     dispatch(setGlobalLoading(true));
                   }}>
@@ -45,6 +49,16 @@ const Favorites = () => {
                   <div className="text-center p-2">
                     <p>{nameRu}</p>
                   </div>
+                  <Button
+                    text={<AiFillDelete />}
+                    styles={'absolute top-[10px] right-[10px]'}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (confirm('Вы действительно хотите удалить фильм из избранного?')) {
+                        dispatch(fetchRemoveFilm(elem._id));
+                      }
+                    }}
+                  />
                 </div>
               </Link>
             </>

@@ -38,3 +38,26 @@ export const getAllFavorite = async (req, res) => {
     });
   }
 };
+
+export const removeFIlm = async (req, res) => {
+  try {
+    // const filmId = req.body.kinopoiskId;
+    const filmId = req.params.id;
+
+    const removeFilm = await FilmModel.findOneAndDelete({ _id: filmId });
+    if (!removeFIlm) {
+      return res.status(404).json({
+        message: 'Фильм не найден',
+      });
+    }
+
+    res.json({
+      message: 'Фильм удален из списка',
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      message: 'Внутренняя ошибка сервера, повторите попытку позже',
+    });
+  }
+};

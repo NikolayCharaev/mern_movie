@@ -11,6 +11,11 @@ export const fetchFavoriteList = createAsyncThunk('/fetchFavoriteList', async ()
   return data;
 });
 
+export const fetchRemoveFilm = createAsyncThunk('/fetchRemoveFilm', async (id) => {
+  const { data } = await axios.delete(`/favorite/${id}`);
+  return data;
+});
+
 const initialState = {
   status: '',
   films: [],
@@ -41,6 +46,10 @@ export const favoriteSlice = createSlice({
     },
     [fetchFavoriteList.rejected]: (state) => {
       state.status = 'error';
+    },
+
+    [fetchRemoveFilm.pending]: (state, action) => {
+      state.films = state.films.filter((film) => film._id !== action.meta.arg);
     },
   },
 });

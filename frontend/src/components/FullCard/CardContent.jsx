@@ -36,11 +36,6 @@ const CardContent = () => {
 
   const { films } = useSelector((state) => state.favoriteFilms);
 
-  // films.some((elem) => {
-  //   if (elem.kinopoiskId === kinopoiskId) {
-  //     setIsFavorite(true);
-  //   }
-  // });
   useEffect(() => {
     dispatch(fetchFavoriteList());
   }, []);
@@ -86,7 +81,6 @@ const CardContent = () => {
             </p>
 
             {films.some((elem) => {
-              console.log(elem);
               if (
                 (elem.isFavorite === true && elem.kinopoiskId === kinopoiskId) ||
                 filmFavorite === true

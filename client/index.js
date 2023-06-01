@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { getMe, login, register } from './controllers/userController.js';
-import { addFavoriteFilm, getAllFavorite } from './controllers/favoriteController.js';
+import { addFavoriteFilm, getAllFavorite, removeFIlm } from './controllers/favoriteController.js';
 import checkAuth from './controllers/checkAuth.js';
 
 const app = express();
@@ -28,3 +28,4 @@ app.get('/me', checkAuth, getMe);
 
 app.post('/favorite', checkAuth, addFavoriteFilm);
 app.get('/favorite', checkAuth, getAllFavorite);
+app.delete('/favorite/:id', checkAuth, removeFIlm);
