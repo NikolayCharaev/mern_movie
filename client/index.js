@@ -6,6 +6,7 @@ import { getMe, login, register } from './controllers/userController.js';
 import { addFavoriteFilm, getAllFavorite, removeFIlm } from './controllers/favoriteController.js';
 import checkAuth from './controllers/checkAuth.js';
 
+
 const app = express();
 
 app.use(express.json());
@@ -37,6 +38,7 @@ app.delete('/favorite/:id', checkAuth, removeFIlm);
 
 
 console.log('test')
+
 
 
 
