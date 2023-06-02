@@ -36,5 +36,7 @@ app.get('/favorite', checkAuth, getAllFavorite);
 app.delete('/favorite/:id', checkAuth, removeFIlm);
 
 
+console.log('test')
+
 
 
