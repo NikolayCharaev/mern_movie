@@ -7,6 +7,7 @@ import { addFavoriteFilm, getAllFavorite, removeFIlm } from './controllers/favor
 import checkAuth from './controllers/checkAuth.js';
 
 const app = express();
+
 app.use(express.json());
 app.use(cors()); 
 
