@@ -29,5 +29,5 @@ app.post('/login', login);
 app.get('/me', checkAuth, getMe);
 
 app.post('/favorite', checkAuth, addFavoriteFilm);
-app.get('/favorite', getAllFavorite);
+app.get('/favorite', checkAuth, getAllFavorite);
 app.delete('/favorite/:id', checkAuth, removeFIlm);
