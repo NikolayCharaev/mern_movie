@@ -31,3 +31,10 @@ app.get('/me', checkAuth, getMe);
 app.post('/favorite', checkAuth, addFavoriteFilm);
 app.get('/favorite', checkAuth, getAllFavorite);
 app.delete('/favorite/:id', checkAuth, removeFIlm);
+
+
+app.get('/test',(req,res) => { 
+  return res.json({
+    message : 'ща получится'
+  })
+})
