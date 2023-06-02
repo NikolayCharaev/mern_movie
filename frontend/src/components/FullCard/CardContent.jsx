@@ -14,6 +14,7 @@ const CardContent = () => {
   // const [isFavorite, setIsFavorite] = useState(false);
   const [filmFavorite, setFilmFavorite] = useState(false);
   const { film } = useSelector((state) => state.movieInfo.movieData);
+  const { user } = useSelector((state) => state.userSlice);
   const {
     nameRu,
     ratingKinopoisk,
@@ -52,7 +53,9 @@ const CardContent = () => {
             <h1 className="text-3xl">({year})</h1>
           </div>
           <div className="flex items-end mb-8 ">
-            <p className={ratingKinopoisk ? 'ml-4 border p-2 rounded' : 'hinnde'}>{ratingKinopoisk}</p>
+            <p className={ratingKinopoisk ? 'ml-4 border p-2 rounded' : 'hinnde'}>
+              {ratingKinopoisk}
+            </p>
             {genres &&
               genres.map((item, index) => {
                 const { genre } = item;
@@ -93,6 +96,7 @@ const CardContent = () => {
               </p>
             ) : (
               <Button
+                styles={user.length <= 0 && 'hidden'}
                 text={<AiFillHeart />}
                 onClick={() => {
                   dispatch(fetchAddFilm(favoriteFilmAdding));
