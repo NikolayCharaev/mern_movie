@@ -42,14 +42,14 @@ const OneActorItem = () => {
 
   return (
     <div>
-      <div className="flex gap-10 mt-20">
+      <div className="flex gap-10 mt-20 sm:flex-col sm:items-center w-full">
         <div className="">
-          <img src={posterUrl} alt="" className="rounded" />
+          <img src={posterUrl} alt="" className="rounded sm:w-[300px]" />
         </div>
-        <div className=" ">
+        <div className="w-full">
           <Title text={nameRu} />
           <h1 className="text-2xl mb-3">O персоне</h1>
-          <div className="text-gray-300 flex flex-col gap-4">
+          <div className="text-gray-300 flex flex-col gap-4 ">
             <p>
               Карьера : <span className="text-white">{profession}</span>
             </p>

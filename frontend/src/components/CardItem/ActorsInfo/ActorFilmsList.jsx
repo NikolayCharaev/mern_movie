@@ -20,7 +20,7 @@ const ActorFilmsList = ({ films }) => {
     <div className="pb-20">
       <Title text={'Фильмы с участием актера'} />
 
-      <div className="flex flex-wrap gap-5">
+      <div className="flex flex-wrap items-center justify-center gap-5">
         {films &&
           films.slice(0, visibleFilms).map((elem, id) => {
             const { filmId, nameRu } = elem;

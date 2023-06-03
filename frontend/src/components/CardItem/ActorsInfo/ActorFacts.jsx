@@ -9,7 +9,7 @@ const ActorFacts = ({ facts }) => {
       <div className="font-jost text-xl">
         {facts.map((elem, id) => {
           return (
-            <p className="mb-2">
+            <p className="mb-2 xs:text-base">
               {id + 1 + ' '}) {elem}
             </p>
           );
