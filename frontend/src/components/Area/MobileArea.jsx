@@ -21,12 +21,15 @@ const MobileArea = () => {
           {/* <AiFillHeart className='text-blue-800 text-2xl'/> */}
           <p className=" bg-blue-800 text-white  p-2 rounded ">{userData && userData.username}</p>
         </div>
-        <Button
-          text="выйти"
-          onClick={() => {
-            dispatch(logout());
-          }}
-        />
+        {userData && (
+          <Button
+            text="выйти"
+            onClick={() => {
+              dispatch(logout());
+            }}
+          />
+        )}
+
         {active ? (
           <FaWindowClose className="cursor-pointer" onClick={() => setActive(!active)} />
         ) : (
@@ -37,12 +40,8 @@ const MobileArea = () => {
       {active && (
         <div className="absolute  top-[70px] right-[-10px] w-[300px] h-[50vh] rounded z-10 bg-headerBg shadow-2xl shadow-indigo-500/40">
           <div className="flex flex-col items-center mt-10  ">
-            <Link to="/films/search">
-              <Button text={'поиск фильма'} onClick={() => setActive(false)} styles="mb-4" />
-            </Link>
-
             {!userData ? (
-              <div className="flex flex-col">
+              <div className="flex flex-col justify-center items-center gap-4 mb-4">
                 <Link to="/login">
                   <Button text="войти" onClick={() => setActive(false)} />
                 </Link>
@@ -61,6 +60,9 @@ const MobileArea = () => {
                 </Link>
               </div>
             )}
+            <Link to="/films/search">
+              <Button text={'поиск фильма'} onClick={() => setActive(false)} styles="mb-4" />
+            </Link>
           </div>
         </div>
       )}
