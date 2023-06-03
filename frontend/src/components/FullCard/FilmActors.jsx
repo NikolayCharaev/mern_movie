@@ -1,8 +1,6 @@
 import Title from '../common/Title';
 import ActorsItem from '../CardItem/ActorsInfo/ActorsItem';
-
 import { useSelector } from 'react-redux';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar } from 'swiper';
 import 'swiper/css';
@@ -14,14 +12,12 @@ const FilmActors = () => {
   return (
     <>
       <Title text="Актеры" />
-      <div className="pb-4">
+      <div className="pb-4 ">
         <Swiper
           modules={[Scrollbar]}
           spaceBetween={10}
           slidesPerView={4}
           scrollbar={{ draggable: true }}
-          // onSlideChange={() => console.log('slide change')}
-          // onSwiper={(swiper) => console.log(swiper)}
           >
           {actors.map((elem, index) => {
             const { nameRu, posterUrl, staffId } = elem;

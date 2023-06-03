@@ -37,9 +37,9 @@ const FullCard = () => {
   return (
     <>
       <div
-        className="w-full h-[70vh] bg-left-top bg-no-repeat bg-cover rounded-b-lg shadow-cardShadow  "
+        className="w-full h-[70vh] bg-left-top bg-no-repeat bg-cover rounded-b-lg shadow-cardShadow  lg:h-[60vh] sm:h-[50vh]"
         style={{ backgroundImage: `url(${coverUrl || randomPoster})` }}></div>
-      <div className=" w-full mt-[-200px]  pb-12">
+      <div className=" w-full mt-[-200px]  pb-12 lg:mt-[-300px]">
         <CardContent />
       </div>
     </>

@@ -19,17 +19,17 @@ const ActorsItem = ({ name, poster, actorId }) => {
     <div onClick={() => dispatch(setGlobalLoading(true))}>
       <Link to={`/actor/${actorId}`}>
         <div className=" relative " onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-          <img className="w-52 h-52 object-cover" src={poster} alt="poster" />
+          <img className="w-52 h-52 object-cover sm:w-40 sm:h-40 mt:w-32 mt:h-32" src={poster} alt="poster" />
           <div
             className={`absolute h-full w-full top-0  left-0 ${
               hovered ? 'opacity-100' : 'opacity-0'
             } transition-opacity duration-300 bg-card-gradient `}>
-            <div className="flex flex-col justify-center items-center h-full">
+            <div className="flex flex-col justify-center items-center h-full sm:text-sm">
               <div className="">
-                <FcInfo className="text-red-500 text-7xl cursor-pointer transition hover:text-red-700" />
+                <FcInfo className=" text-7xl sm:text-2xl cursor-pointer transition " />
               </div>
               <div className="mt-4">
-                <p>{name}</p>
+                <p className='text-center'>{name}</p>
               </div>
             </div>
           </div>
