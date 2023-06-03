@@ -10,11 +10,11 @@ import { AiFillHeart } from 'react-icons/ai';
 import { fetchAddFilm, fetchFavoriteList } from '../../redux/favorites/favoriteFilm';
 
 const CardContent = () => {
+  const [newFavorite, setNewFavorite] = useState(false)
   const dispatch = useDispatch();
-  // const [isFavorite, setIsFavorite] = useState(false);
-  const [filmFavorite, setFilmFavorite] = useState(false);
   const { film } = useSelector((state) => state.movieInfo.movieData);
   const { user } = useSelector((state) => state.userSlice);
+  const { favorite } = useSelector((state) => state.favoriteFilms);
   const {
     nameRu,
     ratingKinopoisk,
@@ -32,10 +32,7 @@ const CardContent = () => {
     year: year,
     posterUrl: posterUrl,
     kinopoiskId: kinopoiskId,
-    isFavorite: true,
   };
-
-  const { films } = useSelector((state) => state.favoriteFilms);
 
   useEffect(() => {
     dispatch(fetchFavoriteList());
@@ -83,14 +80,7 @@ const CardContent = () => {
                 })}
             </p>
 
-            {films.some((elem) => {
-              if (
-                (elem.isFavorite === true && elem.kinopoiskId === kinopoiskId) ||
-                filmFavorite === true
-              ) {
-                return true;
-              }
-            }) ? (
+            {favorite || newFavorite ? (
               <p className="bg-blue-600 text-2xl p-2 rounded">
                 <AiFillHeart className="text-green-500" />
               </p>
@@ -100,7 +90,7 @@ const CardContent = () => {
                 text={<AiFillHeart />}
                 onClick={() => {
                   dispatch(fetchAddFilm(favoriteFilmAdding));
-                  setFilmFavorite(true);
+                  setNewFavorite(true)
                 }}
               />
             )}

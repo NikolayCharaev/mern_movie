@@ -8,11 +8,13 @@ import {
 } from '../../redux/features/movieInfo';
 import { useEffect } from 'react';
 import CardContent from './CardContent';
+import { checkFavoriteFilm } from '../../redux/favorites/favoriteFilm';
 
 import { fetchAuthMe } from '../../redux/user/auth';
 const FullCard = () => {
   const { id } = useParams();
   const { posters } = useSelector((state) => state.movieInfo.movieData);
+  const { films } = useSelector((state) => state.favoriteFilms);
   const dispatch = useDispatch();
 
   function getRandomElement(array) {
@@ -26,6 +28,7 @@ const FullCard = () => {
     dispatch(fetchMovieActors(id));
     dispatch(fetchMovieVideos(id));
     dispatch(fetchAuthMe());
+    dispatch(checkFavoriteFilm(id));
   }, []);
 
   const randomPoster = getRandomElement(posters);

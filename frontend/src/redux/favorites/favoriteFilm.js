@@ -3,7 +3,9 @@ import axios from '../../../interceptors/UserInterceptor';
 import { toast } from 'react-toastify';
 
 export const fetchAddFilm = createAsyncThunk('/fetchFavoriteFilm', async (film) => {
-  const { data } = await axios.post('/favorite', film).then(toast.success('фильм добавлен в избранное'));
+  const { data } = await axios
+    .post('/favorite', film)
+    .then(toast.success('фильм добавлен в избранное'));
   return data;
 });
 
@@ -20,11 +22,17 @@ export const fetchRemoveFilm = createAsyncThunk('/fetchRemoveFilm', async (id) =
 const initialState = {
   status: '',
   films: [],
+  favorite: false,
 };
 
 export const favoriteSlice = createSlice({
   name: 'favorite',
   initialState,
+  reducers: {
+    checkFavoriteFilm: (state, action) => {
+      state.favorite = state.films.some(film => film.kinopoiskId == action.payload);
+    },
+  },
   extraReducers: {
     [fetchAddFilm.pending]: (state) => {
       state.status = 'loading';
@@ -54,5 +62,9 @@ export const favoriteSlice = createSlice({
     },
   },
 });
-
+export const { checkFavoriteFilm } = favoriteSlice.actions;
 export const favoriteFilms = favoriteSlice.reducer;
+
+
+
+
