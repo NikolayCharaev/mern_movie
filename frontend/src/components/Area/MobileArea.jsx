@@ -13,13 +13,13 @@ const MobileArea = () => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
   const { user, status } = useSelector((state) => state.userSlice);
-  const {userData} = user
+  const { userData } = user;
   return (
     <div className="relative ">
       <div className="flex gap-4 items-center">
         <div className="font-jost flex items-center gap-4">
           {/* <AiFillHeart className='text-blue-800 text-2xl'/> */}
-          <p className=" bg-blue-800 text-white  p-2 rounded ">{userData &&userData.username}</p>
+          <p className=" bg-blue-800 text-white  p-2 rounded ">{userData && userData.username}</p>
         </div>
         <Button
           text="выйти"
@@ -44,16 +44,20 @@ const MobileArea = () => {
             {!userData ? (
               <div className="flex flex-col">
                 <Link to="/login">
-                  <Button text="войти" />
+                  <Button text="войти" onClick={() => setActive(false)} />
                 </Link>
                 <Link to="/register">
-                  <Button text="зарегистрироваться" />
+                  <Button text="зарегистрироваться" onClick={() => setActive(false)} />
                 </Link>
               </div>
             ) : (
               <div className="flex flex-col items-center gap-5 xs:gap-3">
                 <Link to="/films/favorites">
-                  <Button text={'избранные'} styles={'bg-blue-800 hover:bg-blue-900 px-6 '} />
+                  <Button
+                    text={'избранные'}
+                    styles={'bg-blue-800 hover:bg-blue-900 px-6 '}
+                    onClick={() => setActive(false)}
+                  />
                 </Link>
               </div>
             )}
