@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="bg-appBg w-full h-full min-h-screen text-textColor font-openSans ">
       <Header />
-      <div className="container mx-auto ">
+      <div className="container mx-auto md:px-4">
         <ToastContainer
           position="bottom-right"
           autoClose={2000}

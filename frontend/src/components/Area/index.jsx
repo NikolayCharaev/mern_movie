@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/user/auth';
 import { AiFillHeart, AiOutlineSearch } from 'react-icons/ai';
-import { toast } from 'react-toastify';
 
 const PersonalArea = () => {
   const dispatch = useDispatch();

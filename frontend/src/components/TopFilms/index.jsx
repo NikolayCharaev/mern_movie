@@ -20,12 +20,16 @@ const TopFilms = ({ text, filmsList }) => {
 
   useEffect(() => {
     const updateSlidesPerView = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 450) {
         setSlidesPerView(2);
-      } else if (window.innerWidth < 1090) {
+      } else if (window.innerWidth < 768) {
         setSlidesPerView(3);
-      } else if (window.innerWidth < 1280) {
+      } else if (window.innerWidth < 860) {
+        setSlidesPerView(3);
+      } else if (window.innerWidth < 1060) {
         setSlidesPerView(4);
+      } else if (window.innerWidth < 1280) {
+        setSlidesPerView(5);
       } else {
         setSlidesPerView(6);
       }

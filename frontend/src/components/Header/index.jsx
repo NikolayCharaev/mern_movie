@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Logo from '../common/Logo';
 import PersonalArea from '../Area';
-
+import MobileArea from '../Area/MobileArea';
 const Header = () => {
   return (
     <div className=" bg-headerBg ">
@@ -10,7 +10,12 @@ const Header = () => {
           <Logo />
         </Link>
 
-        <PersonalArea />
+        <div className={`hidden  mt:block `}>
+          <MobileArea />
+        </div>
+        <div className="mt:hidden">
+          <PersonalArea />
+        </div>
       </div>
     </div>
   );

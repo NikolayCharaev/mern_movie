@@ -14,7 +14,6 @@ import { toast } from 'react-toastify';
 const Home = () => {
   const dispatch = useDispatch();
 
-
   useEffect(() => {
     dispatch(fetchTopFilms(1));
     dispatch(fetchTopAwaitFilms(1));

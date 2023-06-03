@@ -19,18 +19,24 @@ const CardItem = ({ posterUrl, filmYear, filmName, id }) => {
   return (
     <Link to={`/${id}`}>
       <div
-        className="relative "
+        className=" "
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={() => dispatch(setGlobalLoading(true))}>
-        <img className="w-82 h-96 object-cover" src={posterUrl} alt="poster" />
+        <div className="relative">
+          <img
+            className="w-82 h-96 object-cover lg:w-full lg:h-full"
+            src={posterUrl}
+            alt="poster"
+          />
+        </div>
         <div
           className={`absolute h-full w-full top-0  left-0 ${
             hovered ? 'opacity-100' : 'opacity-0'
           } transition-opacity duration-300 bg-card-gradient `}>
-          <div className="flex flex-col justify-center items-center h-full">
+          <div className="flex flex-col justify-center items-center h-full sm:text-sm xs:text-xs">
             <div className="">
-              <BsYoutube className="text-red-500 text-7xl cursor-pointer transition hover:text-red-700" />
+              <BsYoutube className="text-red-500 text-7xl cursor-pointer transition hover:text-red-700 sm:text-4xl xs:text-2xl " />
             </div>
             <div className="flex gap-3">
               <h4>{filmName}</h4>
