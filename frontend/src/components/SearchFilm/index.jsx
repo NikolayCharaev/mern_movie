@@ -39,14 +39,14 @@ const SearchFilms = () => {
         {items.length > 0 && (
           <>
             <Title text="Найденные фильмы" />
-            <div className="grid grid-cols-5 gap-4 pb-20 ">
+            <div className="flex flex-wrap items-center lg:justify-center gap-4 pb-20 ">
               {items.map((elem, index) => {
                 const { filmId, posterUrl, nameRu } = elem;
                 console.log(elem);
                 return (
                   <>
                     <Link to={`/${filmId}`}>
-                      <div className="p-3 rounded bg-headerBg" onClick={() => { 
+                      <div className="p-3 rounded bg-headerBg " onClick={() => { 
                         dispatch(setGlobalLoading(true))
                       }}>
                         <div className="">
