@@ -9,8 +9,24 @@ import TopFilms from '../TopFilms';
 import { fetchAuthMe } from '../../redux/user/auth';
 import { fetchFavoriteList } from '../../redux/favorites/favoriteFilm';
 
+import { toast } from 'react-toastify';
+
 const Home = () => {
   const dispatch = useDispatch();
+
+  const { status } = useSelector((state) => state.userSlice);
+
+  // switch (status) {
+  //   case 'loading':
+  //     toast('Данные о пользователе загружаются');
+  //     break;
+  //   case 'loaded':
+  //     toast.success('Данные получены');
+  //     break;
+  //   case 'error':
+  //     toast.error('Ошибка при получении данных');
+  //     break;
+  // }
 
   useEffect(() => {
     dispatch(fetchTopFilms(1));
@@ -18,7 +34,7 @@ const Home = () => {
     dispatch(fetchPopularFilms(1));
     dispatch(fetchFavoriteList());
 
-    dispatch(fetchAuthMe())
+    dispatch(fetchAuthMe());
   }, []);
   const topFilms = useSelector((state) => state.allMovies.topFilms.films);
   const awaitFilms = useSelector((state) => state.allMovies.topAwaitFilms.films);

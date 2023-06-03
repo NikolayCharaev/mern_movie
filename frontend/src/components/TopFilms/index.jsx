@@ -49,13 +49,13 @@ const TopFilms = ({ text, filmsList }) => {
           onReachEnd={() => {
             if (text === 'Топ за все время') {
               setTopFilms(topFilms + 1);
-              dispatch(fetchTopFilms(topFilms));
+              // dispatch(fetchTopFilms(topFilms));
             } else if (text === 'Самые ожидаемые фильмы') {
               setAwaitFilms(awaitFilms + 1);
               // dispatch(fetchTopAwaitFilms(awaitFilms));
             } else if (text === 'Популярные фильмы') {
               setPopularFilms(popularFilms + 1);
-              dispatch(fetchPopularFilms(popularFilms));
+              // dispatch(fetchPopularFilms(popularFilms));
             }
           }}>
           {filmsList.map((film) => {
