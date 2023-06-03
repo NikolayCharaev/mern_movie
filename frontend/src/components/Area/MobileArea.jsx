@@ -13,13 +13,13 @@ const MobileArea = () => {
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
   const { user, status } = useSelector((state) => state.userSlice);
-  const { userData } = user;
+  const {userData} = user
   return (
     <div className="relative ">
       <div className="flex gap-4 items-center">
         <div className="font-jost flex items-center gap-4">
           {/* <AiFillHeart className='text-blue-800 text-2xl'/> */}
-          <p className=" bg-blue-800 text-white  p-2 rounded ">{userData.username}</p>
+          <p className=" bg-blue-800 text-white  p-2 rounded ">{userData &&userData.username}</p>
         </div>
         <Button
           text="выйти"
