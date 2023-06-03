@@ -18,11 +18,13 @@ export default {
         jost: ['Jost', 'sans-serif'],
       },
       screens: {
-        mt: {max: '500px'},
+        mt: { max: '500px' },
         xs: { max: '580px' },
         sm: { max: '768px' },
-        lg : {max : '992px'},
+        lg: { max: '992px' },
         md: { max: '1060px' },
+        xl: { max: '1280px' },
+        '2xl': '1400px',
       },
       backgroundImage: (theme) => ({
         'card-gradient':

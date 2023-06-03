@@ -31,7 +31,7 @@ const Favorites = () => {
           <HiOutlineEmojiSad className="" />
         </div>
       )}
-      <div className="grid grid-cols-5 gap-4 pb-20 ">
+      <div className="2xl:grid 2xl:grid-cols-5 flex flex-wrap justify-center  gap-4 pb-20 items-center ">
         {films.map((elem, index) => {
           const { kinopoiskId, posterUrl, nameRu, _id } = elem;
           return (
