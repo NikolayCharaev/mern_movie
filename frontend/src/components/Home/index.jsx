@@ -14,26 +14,12 @@ import { toast } from 'react-toastify';
 const Home = () => {
   const dispatch = useDispatch();
 
-  const { status } = useSelector((state) => state.userSlice);
-
-  // switch (status) {
-  //   case 'loading':
-  //     toast('Данные о пользователе загружаются');
-  //     break;
-  //   case 'loaded':
-  //     toast.success('Данные получены');
-  //     break;
-  //   case 'error':
-  //     toast.error('Ошибка при получении данных');
-  //     break;
-  // }
 
   useEffect(() => {
     dispatch(fetchTopFilms(1));
     dispatch(fetchTopAwaitFilms(1));
     dispatch(fetchPopularFilms(1));
     dispatch(fetchFavoriteList());
-
     dispatch(fetchAuthMe());
   }, []);
   const topFilms = useSelector((state) => state.allMovies.topFilms.films);

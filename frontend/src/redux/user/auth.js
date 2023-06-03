@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../../interceptors/UserInterceptor';
-
-import {toast} from 'react-toastify'
+import { toast } from 'react-toastify';
 
 export const fetchRegisterUser = createAsyncThunk('/auth/fetchRegister', async (params) => {
   const { data } = await axios.post('/register', params);
@@ -9,11 +8,17 @@ export const fetchRegisterUser = createAsyncThunk('/auth/fetchRegister', async (
 });
 
 export const fetchAuthUser = createAsyncThunk('auth/fetchAuthUser', async (params) => {
-  const { data } = await axios.post('/login', params).catch((err) => {
+  toast.info('Загрузка...', { autoClose: true }); // Показываем индикатор загрузки
+
+  try {
+    const { data } = await axios.post('/login', params);
+    toast.dismiss(); // Закрываем toast после успешного ответа
+    return data;
+  } catch (err) {
     const errorMessage = err.response.data.message;
-    toast.error(errorMessage)
-  })
-  return data;
+    toast.error(errorMessage);
+    throw err;
+  }
 });
 
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
@@ -64,16 +69,14 @@ export const authSlice = createSlice({
 
     [fetchAuthMe.pending]: (state) => {
       state.status = 'loading';
-      toast('Загрузка данных о пользователе')
     },
     [fetchAuthMe.fulfilled]: (state, action) => {
       state.status = 'loaded';
-      toast.success('Данные о пользователе успешно получены')
       state.user = action.payload;
     },
     [fetchAuthMe.rejected]: (state) => {
       state.status = 'error';
-      toast.error('Ошибка при получении данных о пользователе')
+      toast.error('Ошибка при получении данных о пользователе');
       state.user = [];
     },
   },

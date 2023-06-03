@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '../../../interceptors/UserInterceptor';
+import { toast } from 'react-toastify';
 
 export const fetchAddFilm = createAsyncThunk('/fetchFavoriteFilm', async (film) => {
-  const { data } = await axios.post('/favorite', film);
+  const { data } = await axios.post('/favorite', film).then(toast.success('фильм добавлен в избранное'));
   return data;
 });
 
@@ -12,7 +13,7 @@ export const fetchFavoriteList = createAsyncThunk('/fetchFavoriteList', async ()
 });
 
 export const fetchRemoveFilm = createAsyncThunk('/fetchRemoveFilm', async (id) => {
-  const { data } = await axios.delete(`/favorite/${id}`);
+  const { data } = await axios.delete(`/favorite/${id}`).then(toast.success('фильм удален'));
   return data;
 });
 

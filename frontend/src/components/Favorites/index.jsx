@@ -54,9 +54,7 @@ const Favorites = () => {
                     styles={'absolute top-[10px] right-[10px]'}
                     onClick={(e) => {
                       e.preventDefault();
-                      if (confirm('Вы действительно хотите удалить фильм из избранного?')) {
-                        dispatch(fetchRemoveFilm(elem._id));
-                      }
+                      dispatch(fetchRemoveFilm(elem._id));
                     }}
                   />
                 </div>
