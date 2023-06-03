@@ -16,9 +16,9 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   const loading = useSelector((state) => state.globalLoading.loading);
   return (
-    <div className="bg-appBg w-full h-full min-h-screen text-textColor font-openSans">
+    <div className="bg-appBg w-full h-full min-h-screen text-textColor font-openSans ">
       <Header />
-      <div className="container mx-auto">
+      <div className="container mx-auto ">
         <ToastContainer
           position="bottom-right"
           autoClose={2000}

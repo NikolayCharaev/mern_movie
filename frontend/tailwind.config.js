@@ -17,6 +17,11 @@ export default {
         openSans: ['Open Sans', 'sans-serif'],
         jost: ['Jost', 'sans-serif'],
       },
+      screens: {
+        xs: { max: '580px' },
+        sm: { max: '768px' },
+        md: { max: '1060px' },
+      },
       backgroundImage: (theme) => ({
         'card-gradient':
           'linear-gradient(0deg, rgba(18,18,18,0.8), rgba(51,51,51,0.8), rgba(82,82,82,0.8))',
