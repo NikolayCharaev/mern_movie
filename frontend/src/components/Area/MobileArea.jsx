@@ -31,7 +31,7 @@ const MobileArea = () => {
         )}
 
         {active ? (
-          <FaWindowClose className="cursor-pointer" onClick={() => setActive(!active)} />
+          <FaWindowClose className="cursor-pointer text-3xl" onClick={() => setActive(!active)} />
         ) : (
           <GiHamburgerMenu className="cursor-pointer text-3xl" onClick={() => setActive(!active)} />
         )}
@@ -50,7 +50,7 @@ const MobileArea = () => {
                 </Link>
               </div>
             ) : (
-              <div className="flex flex-col items-center gap-5 xs:gap-3">
+              <div className="flex flex-col items-center gap-5 xs:gap-3 xs:mb-5">
                 <Link to="/films/favorites">
                   <Button
                     text={'избранные'}
