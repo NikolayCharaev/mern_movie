@@ -33,7 +33,7 @@ const MobileArea = () => {
         {active ? (
           <FaWindowClose className="cursor-pointer" onClick={() => setActive(!active)} />
         ) : (
-          <GiHamburgerMenu className="cursor-pointer" onClick={() => setActive(!active)} />
+          <GiHamburgerMenu className="cursor-pointer text-3xl" onClick={() => setActive(!active)} />
         )}
       </div>
 
