@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BsYoutube } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setGlobalLoading } from '../../redux/features/globalLoading';
 
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 const CardItem = ({ posterUrl, filmYear, filmName, id }) => {
+  const [posterLoad, setPosterLoad] = useState(true);
   const [hovered, setHovered] = useState(false);
   const dispatch = useDispatch();
 
@@ -16,19 +20,28 @@ const CardItem = ({ posterUrl, filmYear, filmName, id }) => {
     setHovered(false);
   };
 
+
   return (
     <Link to={`/${id}`}>
       <div
         className=" "
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onClick={() => dispatch(setGlobalLoading(true))}>
+        onClick={() => dispatch(setGlobalLoading(false))}>
         <div className="relative">
+          {posterLoad && <Skeleton className="w-82 h-96 object-cover lg:w-full lg:h-full" />}
           <img
             className="w-82 h-96 object-cover lg:w-full lg:h-full"
             src={posterUrl}
+            onLoad={(e) => {
+              setPosterLoad(false);
+              console.log(posterLoad)
+            }}
+            style={{ display: posterLoad ? 'none' : 'block' }}
             alt="poster"
           />
+          
+
         </div>
         <div
           className={`absolute h-full w-full top-0  left-0 ${

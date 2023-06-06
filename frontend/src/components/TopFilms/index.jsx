@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import {
   fetchTopFilms,
   fetchTopAwaitFilms,
@@ -16,6 +17,7 @@ const TopFilms = ({ text, filmsList }) => {
   const [awaitFilms, setAwaitFilms] = useState(1);
   const [popularFilms, setPopularFilms] = useState(1);
   const dispatch = useDispatch();
+
   const [slidesPerView, setSlidesPerView] = useState(6);
 
   useEffect(() => {

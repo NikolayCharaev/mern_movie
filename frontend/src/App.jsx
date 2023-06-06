@@ -13,6 +13,8 @@ import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+
 function App() {
   const loading = useSelector((state) => state.globalLoading.loading);
   return (
@@ -31,6 +33,7 @@ function App() {
           pauseOnHover
           theme="dark"
         />
+          <SkeletonTheme baseColor="#202020" highlightColor="#444">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/films/search" element={<SearchFilms />} />
@@ -41,6 +44,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/films/favorites" element={<Favorites />} />
         </Routes>
+        </SkeletonTheme>
       </div>
     </div>
   );
