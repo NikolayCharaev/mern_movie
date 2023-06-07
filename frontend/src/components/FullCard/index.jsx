@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -11,10 +12,11 @@ import CardContent from './CardContent';
 import { checkFavoriteFilm } from '../../redux/favorites/favoriteFilm';
 
 import { fetchAuthMe } from '../../redux/user/auth';
+
+
 const FullCard = () => {
   const { id } = useParams();
   const { posters } = useSelector((state) => state.movieInfo.movieData);
-  const { films } = useSelector((state) => state.favoriteFilms);
   const dispatch = useDispatch();
 
   function getRandomElement(array) {

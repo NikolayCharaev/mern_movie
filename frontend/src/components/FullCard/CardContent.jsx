@@ -9,8 +9,13 @@ import FilmVideo from './FilmVideo';
 import { AiFillHeart } from 'react-icons/ai';
 import { fetchAddFilm, fetchFavoriteList } from '../../redux/favorites/favoriteFilm';
 
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 const CardContent = () => {
   const [newFavorite, setNewFavorite] = useState(false);
+  const[posterLoad, setPosterLoad]  = useState(true)
+
   const dispatch = useDispatch();
   const { film } = useSelector((state) => state.movieInfo.movieData);
   const { user } = useSelector((state) => state.userSlice);
@@ -41,10 +46,11 @@ const CardContent = () => {
   return (
     <div className="px-10 ">
       <div className="flex xs:flex-col xs:items-center gap-4 font-jost">
-        <div className=" inline">
-          <img src={posterUrl} alt="" className="min-w-full w-96 rounded xs:w-[300px]" />
+        <div className="inline">
+          {posterLoad && <Skeleton className='min-w-full w-96 h-[575px] xs:h-[456px] rounded xs:w-[300px]' />}
+          <img onLoad={() => setPosterLoad(false)}  src={posterUrl} alt="" className={`min-w-full w-96 rounded xs:w-[300px] ${posterLoad ? "hidden" : "block"}`} />
         </div>
-        <div className="w-1/2 xs:w-full">
+        <div className="w-1/2 xs:w-full ">
           <div className="flex items-center gap-5">
             <Title text={nameRu} />
             <h1 className="text-3xl sm:text-2xl xs:text-xl">({year})</h1>
