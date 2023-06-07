@@ -29,7 +29,7 @@ const CardItem = ({ posterUrl, filmYear, filmName, id }) => {
         onMouseLeave={handleMouseLeave}
         onClick={() => dispatch(setGlobalLoading(false))}>
         <div className="relative">
-          {posterLoad && <Skeleton className="w-82 h-96 object-cover lg:w-44 lg:h-60" />}
+          {posterLoad && <Skeleton className="w-82 h-96 object-cover lg:w-44 lg:h-72" />}
           <img
             className="w-82 h-96 object-cover lg:w-full lg:h-full"
             src={posterUrl}
