@@ -20,7 +20,6 @@ const CardItem = ({ posterUrl, filmYear, filmName, id }) => {
     setHovered(false);
   };
 
-
   return (
     <Link to={`/${id}`}>
       <div
@@ -39,8 +38,6 @@ const CardItem = ({ posterUrl, filmYear, filmName, id }) => {
             style={{ display: posterLoad ? 'none' : 'block' }}
             alt="poster"
           />
-          
-
         </div>
         <div
           className={`absolute h-full w-full top-0  left-0 ${

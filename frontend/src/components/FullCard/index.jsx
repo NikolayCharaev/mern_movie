@@ -13,7 +13,6 @@ import { checkFavoriteFilm } from '../../redux/favorites/favoriteFilm';
 
 import { fetchAuthMe } from '../../redux/user/auth';
 
-
 const FullCard = () => {
   const { id } = useParams();
   const { posters } = useSelector((state) => state.movieInfo.movieData);
@@ -40,7 +39,9 @@ const FullCard = () => {
     <>
       <div
         className="w-full h-[70vh] bg-left-top bg-no-repeat bg-cover rounded-b-lg shadow-cardShadow  lg:h-[60vh] sm:h-[50vh]"
-        style={{ backgroundImage: `url(${coverUrl || randomPoster})` }}></div>
+        style={{
+          backgroundImage: `url(${coverUrl || randomPoster})`,
+        }}></div>
       <div className=" w-full mt-[-200px]  pb-12 lg:mt-[-300px] xs:mt-[-100px]">
         <CardContent />
       </div>

@@ -24,7 +24,7 @@ const ActorsItem = ({ name, poster, actorId }) => {
       <Link to={`/actor/${actorId}`}>
         <div className=" relative " onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           {posterLoad && (
-            <Skeleton className="w-52 h-52 object-cover sm:w-40 sm:h-40 mt:w-32 mt:h-32" />
+            <Skeleton className="w-52 h-52 object-cover sm:w-40 sm:h-40 mt:w-32 mt:h-32 my-4" />
           )}
           <img
             className={`w-52 h-52 object-cover sm:w-40 sm:h-40 mt:w-32 mt:h-32 ${
