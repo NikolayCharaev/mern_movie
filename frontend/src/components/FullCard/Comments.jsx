@@ -43,7 +43,7 @@ const Comments = () => {
     <div>
       <Title text={'Комментарии к фильму'} />
       <div className="overflow-scroll max-h-[400px] flex flex-col ">
-        {items.length <= 0 && <p>Тут пока ничего нет, оставьте комментарий первым :)</p>}
+        {items.length <= 0 && <p className='text-xs'>Тут пока ничего нет, оставьте комментарий первым :)</p>}
         {items.map((comment) => {
           const { text, commentDate } = comment;
           console.log(comment);
