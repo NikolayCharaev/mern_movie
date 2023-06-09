@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 import Button from '../common/Button';
 import Title from '../common/Title';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ const Comments = () => {
   const dispatch = useDispatch();
 
   const { kinopoiskId } = useSelector((state) => state.movieInfo.movieData.film);
-  const {userData} = useSelector(state =>  state.userSlice.user)
+  const { userData } = useSelector((state) => state.userSlice.user);
   const { items } = useSelector((state) => state.comments.allComments);
   const {
     register,
@@ -21,38 +21,41 @@ const Comments = () => {
     formState: { errors },
   } = useForm();
 
-  const OnSubmit = (data) => {
-    if (!userData){
-        return toast.error('авторизируйтесь для комментирования фильмов')
+  const OnSubmit = async (data) => {
+    if (!userData) {
+      reset();
+      return toast.error('авторизируйтесь для комментирования фильмов');
     }
     const { text } = data;
-    dispatch(fetchAddComment({ comment: text, id: kinopoiskId }));
-    dispatch(fetchAllComments(kinopoiskId))
-
+    await dispatch(fetchAddComment({ comment: text, id: kinopoiskId }));
+    toast.success('комментарий опубликован');
+    
+    dispatch(fetchAllComments(kinopoiskId));
+  
     reset();
   };
-
-
-//   useEffect(() => { 
-//     dispatch(fetchAllComments(kinopoiskId))
-//   },[items])
-
-
+  
+  useEffect(() => {
+    dispatch(fetchAllComments(kinopoiskId));
+  }, [dispatch, kinopoiskId]);
+  
   return (
     <div>
       <Title text={'Комментарии к фильму'} />
-      <div className="overflow-scroll max-h-[400px]">
-        {items.length <=0 && <p>Тут пока ничего нет, оставьте комментарий первым :)</p>}
+      <div className="overflow-scroll max-h-[400px] flex flex-col ">
+        {items.length <= 0 && <p>Тут пока ничего нет, оставьте комментарий первым :)</p>}
         {items.map((comment) => {
-          const { text } = comment;
+          const { text, commentDate } = comment;
+          console.log(comment);
           const { email, username } = comment.userInfo;
           return (
             <>
-              <div className='p-2 border border-blue-800 rounded mb-5 relative '>
-                <div className='absolute top-2 left-2 text-xs flex gap-4'>
-                    <p>{username}</p>
+              <div className="p-2 rounded mb-5 relative inline-block bg-headerBg ">
+                <div className="absolute top-2 left-2 text-xs flex gap-2 p-2 bg-emerald-950 rounded">
+                  <p className="">{username}</p>
+                  <p className="">{commentDate}</p>
                 </div>
-                <p className='text-sm mt-10 p-2 bg-headerBg'>{text}</p>
+                <p className="text-sm mt-10  inline-block">{text}</p>
               </div>
             </>
           );
