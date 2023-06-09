@@ -42,6 +42,7 @@ const CardContent = () => {
 
   useEffect(() => {
     dispatch(fetchFavoriteList());
+    
   }, []);
 
   return (

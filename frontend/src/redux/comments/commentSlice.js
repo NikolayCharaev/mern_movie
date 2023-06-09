@@ -5,14 +5,32 @@ import axios from '../../../interceptors/UserInterceptor';
 export const fetchAddComment = createAsyncThunk(
   'comments/fetchAddComment',
   async ({ comment, id }) => {
-    axios.post(`/film/${id}`, comment);
-    console.log(id);
+    try {
+      await axios.post(`/film/${id}`, { text: comment });
+      console.log(id);
+    } catch (error) {
+      console.error('Error adding comment:', error);
+      throw error;
+    }
   },
 );
 
+export const fetchAllComments = createAsyncThunk('/comments/fetchAllComments', async ( id ) => {
+  try {
+    const {data} = await axios.get(`/film/${id}`);
+    return data
+  } catch (error) {
+    console.error('Error adding comment:', error);
+    throw error;
+  }
+});
+
 const initialState = {
-  allComments: [],
-  commentStatus: '',
+  newCommentStatus: '',
+  allComments: {
+    items: [],
+    status: '',
+  },
 };
 
 export const commentsSlice = createSlice({
@@ -20,13 +38,25 @@ export const commentsSlice = createSlice({
   initialState,
   extraReducers: {
     [fetchAddComment.pending]: (state) => {
-      state.commentStatus = 'loading';
+      state.newCommentStatus = 'loading';
     },
     [fetchAddComment.fulfilled]: (state) => {
-      state.commentStatus = 'loaded';
+      state.newCommentStatus = 'loaded';
     },
     [fetchAddComment.rejected]: (state) => {
-      state.commentStatus = 'error';
+      state.newCommentStatus = 'error';
+    },
+
+    [fetchAllComments.pending]: (state) => {
+      state.allComments.status = 'loading';
+    },
+
+    [fetchAllComments.fulfilled]: (state, action) => {
+      (state.allComments.status = 'loaded'), (state.allComments.items = action.payload);
+    },
+
+    [fetchAllComments.rejected]: (state) => {
+      (state.allComments.status = 'error'), (state.allComments.items = []);
     },
   },
 });

@@ -12,6 +12,7 @@ import CardContent from './CardContent';
 import { checkFavoriteFilm } from '../../redux/favorites/favoriteFilm';
 
 import { fetchAuthMe } from '../../redux/user/auth';
+import { fetchAllComments } from '../../redux/comments/commentSlice';
 
 const FullCard = () => {
   const { id } = useParams();
@@ -30,6 +31,7 @@ const FullCard = () => {
     dispatch(fetchMovieVideos(id));
     dispatch(fetchAuthMe());
     dispatch(checkFavoriteFilm(id));
+    dispatch(fetchAllComments(id))
   }, []);
 
   const randomPoster = getRandomElement(posters);
