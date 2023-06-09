@@ -1,18 +1,19 @@
 import mongoose from 'mongoose';
 
-const CommentShema = new mongoose.Schema(
-  {
-    text: {
-      type: String,
-      required: true,
-    },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Users',
-    },
-    filmId: String,
+const CommentShema = new mongoose.Schema({
+  text: {
+    type: String,
+    required: true,
   },
-  { timestamps: true },
-);
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Users',
+  },
+  userInfo: {
+    email: String,
+    username: String,
+  },
+  filmId: String,
+});
 
 export default mongoose.model('Comments', CommentShema);

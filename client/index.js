@@ -37,4 +37,4 @@ app.delete('/favorite/:id', checkAuth, removeFIlm);
 
 //COMMENTS
 app.post('/film/:id', checkAuth, addComment);
-app.get('/film/:id', checkAuth, getAllComments);
+app.get('/film/:id', getAllComments);

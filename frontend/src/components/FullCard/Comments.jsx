@@ -1,16 +1,18 @@
-import React from 'react';
+import {useEffect} from 'react';
 import Button from '../common/Button';
 import Title from '../common/Title';
 import { useDispatch, useSelector } from 'react-redux';
 
 import dayjs from 'dayjs';
-import { fetchAddComment } from '../../redux/comments/commentSlice';
+import { fetchAddComment, fetchAllComments } from '../../redux/comments/commentSlice';
 
 import { useForm } from 'react-hook-form';
 
 const Comments = () => {
   const dispatch = useDispatch();
+
   const { kinopoiskId } = useSelector((state) => state.movieInfo.movieData.film);
+  const { items } = useSelector((state) => state.comments.allComments);
   const {
     register,
     handleSubmit,
@@ -21,14 +23,34 @@ const Comments = () => {
   const OnSubmit = (data) => {
     const { text } = data;
     dispatch(fetchAddComment({ comment: text, id: kinopoiskId }));
+    dispatch(fetchAllComments(kinopoiskId))
+
+    reset();
   };
-  
+
+
+
   return (
     <div>
       <Title text={'Комментарии к фильму'} />
-      <div className=""></div>
+      <div className="overflow-scroll max-h-[400px]">
+        {items.map((comment) => {
+          const { text } = comment;
+          const { email, username } = comment.userInfo;
+          return (
+            <>
+              <div className='p-2 border border-blue-800 rounded mb-5 relative '>
+                <div className='absolute top-2 left-2 text-xs'>
+                    <p>{username}</p>
+                </div>
+                <p className='text-sm mt-10 p-2 bg-headerBg'>{text}</p>
+              </div>
+            </>
+          );
+        })}
+      </div>
 
-      <form action="" className="flex flex-col gap-5" onSubmit={handleSubmit(OnSubmit)}>
+      <form action="" className="flex flex-col gap-5 mt-10" onSubmit={handleSubmit(OnSubmit)}>
         <textarea
           rows={5}
           type="text"

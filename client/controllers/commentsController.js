@@ -1,13 +1,20 @@
 import CommentShema from '../models/Comment.js';
 
+import UserModal from '../models/User.js';
+
 export const addComment = async (req, res) => {
   try {
     const filmId = req.params.id;
-    const userId = req.useRid;
+    const userId = req.userId;
+
+    const user = await UserModal.findById({ _id: userId });
+    const { password, createdAt, updatedAt, _id, ...userData } = user._doc;
+    console.log('userData', userData);
 
     const newFilmComment = new CommentShema({
       text: req.body.text,
-      user: userId,
+      userId,
+      userInfo: userData,
       filmId,
     });
     const filmComment = await newFilmComment.save();
