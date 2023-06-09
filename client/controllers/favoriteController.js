@@ -3,7 +3,7 @@ import UserModel from '../models/User.js';
 
 export const addFavoriteFilm = async (req, res) => {
   try {
-    const { posterUrl, year, nameRu, kinopoiskId, isFavorite } = req.body;
+    const { posterUrl, year, nameRu, kinopoiskId } = req.body;
     const userId = req.userId;
     const film = new FilmModel({
       posterUrl,
@@ -11,7 +11,6 @@ export const addFavoriteFilm = async (req, res) => {
       nameRu,
       kinopoiskId,
       user: userId,
-      isFavorite,
     });
 
     const newFilm = await film.save();
@@ -41,7 +40,6 @@ export const getAllFavorite = async (req, res) => {
 
 export const removeFIlm = async (req, res) => {
   try {
-    // const filmId = req.body.kinopoiskId;
     const filmId = req.params.id;
 
     const removeFilm = await FilmModel.findOneAndDelete({ _id: filmId });
