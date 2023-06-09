@@ -13,7 +13,7 @@ import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import  { SkeletonTheme } from 'react-loading-skeleton';
 
 function App() {
   const loading = useSelector((state) => state.globalLoading.loading);

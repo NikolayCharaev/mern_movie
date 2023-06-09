@@ -11,6 +11,7 @@ import { fetchAddFilm, fetchFavoriteList } from '../../redux/favorites/favoriteF
 
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import Comments from './Comments';
 
 const CardContent = () => {
   const [newFavorite, setNewFavorite] = useState(false);
@@ -115,6 +116,7 @@ const CardContent = () => {
       <div className="">
         <ArtPosters />
         <FilmVideo />
+        <Comments/>
       </div>
     </div>
   );

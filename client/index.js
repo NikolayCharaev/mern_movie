@@ -5,20 +5,18 @@ import dotenv from 'dotenv';
 import { getMe, login, register } from './controllers/userController.js';
 import { addFavoriteFilm, getAllFavorite, removeFIlm } from './controllers/favoriteController.js';
 import checkAuth from './controllers/checkAuth.js';
-
+import { addComment, getAllComments } from './controllers/commentsController.js';
 
 const app = express();
 
 app.use(express.json());
-app.use(cors()); 
-
+app.use(cors());
 
 dotenv.config();
 
 app.listen(process.env.PORT, () => {
   console.log('сервер запущен');
 });
-
 
 mongoose
   .connect(process.env.MONGO_SERVER_KEY)
@@ -32,12 +30,11 @@ app.post('/register', register);
 app.post('/login', login);
 app.get('/me', checkAuth, getMe);
 
+//FILMS
 app.post('/favorite', checkAuth, addFavoriteFilm);
 app.get('/favorite', checkAuth, getAllFavorite);
 app.delete('/favorite/:id', checkAuth, removeFIlm);
 
-
-
-
-
-
+//COMMENTS
+app.post('/film/:id', checkAuth, addComment);
+app.get('/film/:id', checkAuth, getAllComments);
