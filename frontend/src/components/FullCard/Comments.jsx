@@ -48,7 +48,7 @@ const Comments = () => {
         {items.map((comment) => {
           const { text, commentDate } = comment;
           console.log(comment);
-          const { email, username } = comment.userInfo;
+          const { username } = comment.userInfo;
           return (
             <>
               <div className="p-2 rounded mb-5 relative inline-block bg-headerBg ">

@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   fetchMovieData,
   fetchMoviePosters,
@@ -12,7 +12,6 @@ import CardContent from './CardContent';
 import { checkFavoriteFilm } from '../../redux/favorites/favoriteFilm';
 
 import { fetchAuthMe } from '../../redux/user/auth';
-import { fetchAllComments } from '../../redux/comments/commentSlice';
 
 const FullCard = () => {
   const { id } = useParams();
@@ -35,6 +34,7 @@ const FullCard = () => {
 
   const randomPoster = getRandomElement(posters);
   const { coverUrl } = useSelector((state) => state.movieInfo.movieData.film);
+
 
   return (
     <>
