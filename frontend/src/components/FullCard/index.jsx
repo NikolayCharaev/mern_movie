@@ -31,7 +31,6 @@ const FullCard = () => {
     dispatch(fetchMovieVideos(id));
     dispatch(fetchAuthMe());
     dispatch(checkFavoriteFilm(id));
-    dispatch(fetchAllComments(id))
   }, []);
 
   const randomPoster = getRandomElement(posters);
