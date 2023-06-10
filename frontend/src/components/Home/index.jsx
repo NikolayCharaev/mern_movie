@@ -9,7 +9,6 @@ import TopFilms from '../TopFilms';
 import { fetchAuthMe } from '../../redux/user/auth';
 import { fetchFavoriteList } from '../../redux/favorites/favoriteFilm';
 
-import { toast } from 'react-toastify';
 
 const Home = () => {
   const dispatch = useDispatch();

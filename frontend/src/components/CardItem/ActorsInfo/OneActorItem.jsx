@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import Loading from '../../common/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchActorInfo } from '../../../redux/features/oneActor';
@@ -80,8 +79,8 @@ const OneActorItem = () => {
           </div>
         </div>
       </div>
-      {facts && <ActorFacts facts={facts}/>}
-      {films && <ActorFilmsList films={films}/>}
+      {facts && <ActorFacts facts={facts} />}
+      {films && <ActorFilmsList films={films} />}
     </div>
   );
 };

@@ -21,7 +21,9 @@ const CardItem = ({ posterUrl, filmYear, filmName, id }) => {
   };
 
   return (
-    <Link to={`/${id}`}>
+    <Link to={`/${id}`} onClick={() => { 
+      dispatch(setGlobalLoading(true))
+    }}>
       <div
         className=" "
         onMouseEnter={handleMouseEnter}
