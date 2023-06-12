@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchActorInfo } from '../../../redux/features/oneActor';
@@ -9,7 +9,11 @@ import 'dayjs/locale/ru';
 import ActorFacts from './ActorFacts';
 import ActorFilmsList from './ActorFilmsList';
 
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 const OneActorItem = () => {
+  const [posterLoad, setPosterLoad] = useState(true);
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
@@ -43,7 +47,16 @@ const OneActorItem = () => {
     <div>
       <div className="flex gap-10 mt-20 sm:flex-col sm:items-center w-full">
         <div className="">
-          <img src={posterUrl} alt="" className="rounded sm:w-[300px]" />
+          {posterLoad && <Skeleton className="rounded sm:w-[300px] w-full h-full" />}
+          <img
+            src={posterUrl}
+            alt=""
+            className="rounded sm:w-[300px]"
+            onLoad={() => {
+              setPosterLoad(false);
+            }}
+            style={{ display: posterLoad ? 'none' : 'block' }}
+          />
         </div>
         <div className="w-full">
           <Title text={nameRu} />
