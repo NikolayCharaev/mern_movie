@@ -22,7 +22,7 @@ export const fetchAuthUser = createAsyncThunk('auth/fetchAuthUser', async (param
 });
 
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
-  const { data } = await axios.get('/me')
+  const { data } = await axios.get('/me');
   // toast.promise();
   return data;
 });
@@ -74,7 +74,6 @@ export const authSlice = createSlice({
     [fetchAuthMe.fulfilled]: (state, action) => {
       state.status = 'loaded';
       state.user = action.payload;
-      toast.success('данные о пользователе получены :)');
     },
     [fetchAuthMe.rejected]: (state) => {
       state.status = 'error';
