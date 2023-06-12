@@ -51,6 +51,8 @@ const TopFilms = ({ text, filmsList }) => {
           modules={[Navigation]}
           spaceBetween={10}
           slidesPerView={slidesPerView}
+          parallax
+          speed={600}
           navigation
           onReachEnd={() => {
             if (text === 'Топ за все время') {

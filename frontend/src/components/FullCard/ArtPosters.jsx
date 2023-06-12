@@ -17,7 +17,7 @@ const ArtPosters = () => {
   return (
     <div className="">
       <Title text="Изображения из ленты" />
-      <Swiper modules={[Navigation]} spaceBetween={10} slidesPerView={1} navigation>
+      <Swiper modules={[Navigation]} spaceBetween={10} slidesPerView={1} navigation parallax speed={500}>
         {posters.map((item, index) => {
           return (
             <SwiperSlide key={index}>
