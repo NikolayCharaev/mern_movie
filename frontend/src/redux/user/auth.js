@@ -48,10 +48,12 @@ export const authSlice = createSlice({
     },
     [fetchRegisterUser.fulfilled]: (state, action) => {
       state.user = action.payload;
+      toast.success('регистрация прошла успешно :)')
       state.status = 'loaded';
     },
     [fetchRegisterUser.rejected]: (state) => {
       state.user = [];
+      toast.error('ошибка :( проверьте данные')
       state.status = 'error';
     },
 
